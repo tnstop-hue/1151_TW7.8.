@@ -1,0 +1,2172 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>115上 南一國語五上 第7、8課〈用心看世界〉互動學習與25題線上測驗</title>
+  <!-- 載入 Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 載入可愛圓體與繁體中文字體 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --paper-bg: #FFFDF6;
+      --ink: #4a3525;
+      --ink-soft: #7a5f4b;
+      --butter: #FFF3B0;
+      --mint: #D8F3DC;
+      --peach: #FFD6E0;
+      --sky: #D0EBFF;
+      --orange: #FFE5CC;
+      --lavender: #EDE4FF;
+    }
+
+    body {
+      font-family: 'Zen Maru Gothic', 'Noto Sans TC', sans-serif;
+      background-color: var(--paper-bg);
+      color: var(--ink);
+      /* 米黃色手帳點點紙背景 */
+      background-image: radial-gradient(#DFD1BE 1.35px, transparent 1.35px);
+      background-size: 22px 22px;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* 手繪繪本風卡片 */
+    .sketch-card {
+      background-color: #FFFFFF;
+      border: 2.5px solid var(--ink);
+      border-radius: 22px 18px 24px 19px / 19px 23px 18px 22px;
+      box-shadow: 5px 5px 0px var(--ink);
+      position: relative;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .sketch-card-hover:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0px var(--ink);
+    }
+
+    /* 手繪按鈕 */
+    .sketch-btn {
+      border: 2.5px solid var(--ink);
+      border-radius: 16px 14px 18px 15px / 15px 17px 14px 16px;
+      box-shadow: 3px 3px 0px var(--ink);
+      transition: all 0.14s ease;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .sketch-btn:hover:not(:disabled) {
+      transform: translate(-1.5px, -1.5px);
+      box-shadow: 4.5px 4.5px 0px var(--ink);
+    }
+
+    .sketch-btn:active:not(:disabled) {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0px var(--ink);
+    }
+
+    .sketch-btn:disabled {
+      cursor: not-allowed;
+    }
+
+    /* 半透明手繪紙膠帶裝飾 */
+    .washi-tape {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-2deg);
+      width: 116px;
+      height: 24px;
+      opacity: 0.88;
+      border-left: 2px dashed rgba(74, 53, 37, 0.28);
+      border-right: 2px dashed rgba(74, 53, 37, 0.28);
+      pointer-events: none;
+      z-index: 10;
+    }
+    .washi-yellow {
+      background: repeating-linear-gradient(45deg, #FFE082, #FFE082 8px, #FFF5CC 8px, #FFF5CC 16px);
+    }
+    .washi-pink {
+      background: repeating-linear-gradient(-45deg, #FFB3C6, #FFB3C6 8px, #FFE0E9 8px, #FFE0E9 16px);
+      transform: translateX(-50%) rotate(2.4deg);
+    }
+    .washi-mint {
+      background: repeating-linear-gradient(45deg, #A7E8BD, #A7E8BD 8px, #DDF7E5 8px, #DDF7E5 16px);
+      transform: translateX(-50%) rotate(-1.5deg);
+    }
+    .washi-sky {
+      background: repeating-linear-gradient(-45deg, #99D6FF, #99D6FF 8px, #D6EEFF 8px, #D6EEFF 16px);
+      transform: translateX(-50%) rotate(1.8deg);
+    }
+
+    /* 手繪輸入框 */
+    .sketch-input {
+      border: 2.5px solid var(--ink);
+      border-radius: 14px;
+      background-color: #FFFDF9;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: var(--ink);
+      outline: none;
+      transition: background-color 0.15s, box-shadow 0.15s;
+    }
+    .sketch-input:focus {
+      background-color: #FFFFFF;
+      box-shadow: 0 0 0 4px rgba(255, 214, 102, 0.55);
+    }
+
+    /* 螢光筆標示（疊字詞 / 擬人法） */
+    .hl-redup {
+      background: linear-gradient(180deg, transparent 48%, #FFE066 48%);
+      padding: 0 3px;
+      border-radius: 4px;
+      font-weight: 900;
+    }
+    .hl-person {
+      background: linear-gradient(180deg, transparent 48%, #FFC2D4 48%);
+      padding: 0 3px;
+      border-radius: 4px;
+      font-weight: 900;
+    }
+    .hl-mint {
+      background: linear-gradient(180deg, transparent 48%, #B7E4C7 48%);
+      padding: 0 3px;
+      border-radius: 4px;
+      font-weight: 900;
+    }
+
+    /* 導覽分頁按鈕 */
+    .nav-tab {
+      border: 2.5px solid var(--ink);
+      border-radius: 18px 18px 14px 14px;
+      box-shadow: 3px 3px 0px var(--ink);
+      transition: all 0.15s ease;
+    }
+    .nav-tab.active {
+      background-color: #FFE082;
+      transform: translate(-1px, -2px);
+      box-shadow: 4px 4px 0px var(--ink);
+    }
+    .nav-tab:not(.active) {
+      background-color: #FFFFFF;
+    }
+    .nav-tab:not(.active):hover {
+      background-color: #FFF8E1;
+    }
+
+    /* 動畫效果 */
+    .fade-in {
+      animation: fadeIn 0.28s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .pop-correct {
+      animation: popCorrect 0.35s ease;
+    }
+    @keyframes popCorrect {
+      0% { transform: scale(1); }
+      45% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+
+    .shake-wrong {
+      animation: shakeWrong 0.36s ease-in-out;
+    }
+    @keyframes shakeWrong {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+    }
+
+    .float-slow {
+      animation: floatSlow 3.4s ease-in-out infinite;
+    }
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-14">
+
+  <!-- 頂部浮動 Toast 提示訊息（取代 alert） -->
+  <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 hidden max-w-[92vw]">
+    <div id="toastInner" class="sketch-card px-5 py-3 bg-[#FFF3B0] text-[#4a3525] font-bold flex items-center gap-2 text-sm sm:text-base">
+      <span id="toastIcon">✨</span>
+      <span id="toastMsg">提示訊息</span>
+    </div>
+  </div>
+
+  <!-- 頁首 Header -->
+  <header class="max-w-5xl mx-auto px-4 pt-5 pb-3">
+    <div class="sketch-card bg-gradient-to-r from-[#FFF3B0] via-[#FFFDF6] to-[#D8F3DC] p-4 sm:p-6 overflow-hidden">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-4">
+          <!-- 原創手繪地球與建築美食 SVG -->
+          <div class="shrink-0 float-slow">
+            <svg width="86" height="86" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="用心看世界手繪插圖">
+              <circle cx="50" cy="52" r="40" fill="#FFE8A3" opacity="0.5"/>
+              <circle cx="50" cy="58" r="30" fill="#8ECAE6" stroke="#4a3525" stroke-width="2.8"/>
+              <path d="M30 50 C36 42, 47 45, 45 55 C43 62, 34 65, 28 60 Z" fill="#A7E8BD" stroke="#4a3525" stroke-width="2"/>
+              <path d="M58 46 C66 44, 74 52, 72 62 C68 70, 56 68, 56 59 C56 54, 53 48, 58 46 Z" fill="#A7E8BD" stroke="#4a3525" stroke-width="2"/>
+              <circle cx="42" cy="60" r="2.2" fill="#4a3525"/>
+              <circle cx="58" cy="60" r="2.2" fill="#4a3525"/>
+              <circle cx="38" cy="63" r="2.8" fill="#FF9EB5" opacity="0.85"/>
+              <circle cx="62" cy="63" r="2.8" fill="#FF9EB5" opacity="0.85"/>
+              <path d="M46 64 Q50 68 54 64" stroke="#4a3525" stroke-width="2.2" stroke-linecap="round"/>
+              <!-- 迷你高第尖塔 -->
+              <path d="M34 33 L39 13 L44 31 Z" fill="#FFCC80" stroke="#4a3525" stroke-width="2.2" stroke-linejoin="round"/>
+              <circle cx="39" cy="11" r="3" fill="#FF758F" stroke="#4a3525" stroke-width="1.8"/>
+              <!-- 迷你壽司 -->
+              <rect x="57" y="19" width="20" height="11" rx="5" fill="#FFFFFF" stroke="#4a3525" stroke-width="2"/>
+              <path d="M56 23 C58 17, 76 17, 78 23 Z" fill="#FF8C61" stroke="#4a3525" stroke-width="2"/>
+              <!-- 星星 -->
+              <path d="M18 24 L20 28 L24 30 L20 32 L18 36 L16 32 L12 30 L16 28 Z" fill="#FFD166" stroke="#4a3525" stroke-width="1.5"/>
+              <circle cx="84" cy="36" r="2.5" fill="#FF758F"/>
+            </svg>
+          </div>
+          <div>
+            <div class="inline-flex flex-wrap items-center gap-1.5 px-3 py-0.5 rounded-full bg-white border-2 border-[#4a3525] text-xs sm:text-sm font-bold mb-1.5">
+              <span>📚 115學年度上學期</span>
+              <span>・</span>
+              <span>南一版國小國語五上</span>
+              <span class="px-2 py-0.2 rounded-full bg-[#FFD6E0] text-[#4a3525]">25題完整版</span>
+            </div>
+            <h1 class="text-xl sm:text-2xl md:text-3xl font-black tracking-tight text-[#4a3525]">
+              第參單元：用心看世界 🌍
+            </h1>
+            <p class="text-xs sm:text-sm font-medium text-[#7a5f4b] mt-0.5">
+              第7課〈高第的魔法建築〉 × 第8課〈嘗嘗我的家鄉味〉互動學習與線上自我測驗
+            </p>
+          </div>
+        </div>
+
+        <!-- 學習進度小徽章 -->
+        <div class="flex items-center gap-2.5 self-stretch md:self-center justify-center bg-white/90 border-2 border-[#4a3525] rounded-2xl px-4 py-2.5">
+          <div class="text-center px-2.5 border-r-2 border-dashed border-[#DFD1BE]">
+            <div class="text-[11px] font-bold text-[#7a5f4b]">圖鑑探索</div>
+            <div class="text-lg font-black text-[#E76F51]" id="headerExploreCount">0 / 8</div>
+          </div>
+          <div class="text-center px-2.5">
+            <div class="text-[11px] font-bold text-[#7a5f4b]">測驗最高分</div>
+            <div class="text-lg font-black text-[#2A9D8F]" id="headerBestScore">-- 分</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 四大主要分頁導覽列 -->
+    <nav class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3" aria-label="主導覽選單">
+      <button onclick="switchTab('home')" id="tab-home" class="nav-tab active py-3 px-3 flex items-center justify-center gap-2 font-black text-sm sm:text-base">
+        <span>🗺️</span><span>學習地圖</span>
+      </button>
+      <button onclick="switchTab('lesson7')" id="tab-lesson7" class="nav-tab py-3 px-3 flex items-center justify-center gap-2 font-black text-sm sm:text-base">
+        <span>🏰</span><span>第7課 魔法建築</span>
+      </button>
+      <button onclick="switchTab('lesson8')" id="tab-lesson8" class="nav-tab py-3 px-3 flex items-center justify-center gap-2 font-black text-sm sm:text-base">
+        <span>🍱</span><span>第8課 家鄉味</span>
+      </button>
+      <button onclick="switchTab('quiz')" id="tab-quiz" class="nav-tab py-3 px-3 flex items-center justify-center gap-2 font-black text-sm sm:text-base">
+        <span>📝</span><span>線上測驗 (25題)</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- 主內容區 -->
+  <main class="max-w-5xl mx-auto px-4 mt-4">
+
+    <!-- ==================== 分頁 1：🗺️ 學習地圖 ==================== -->
+    <section id="section-home" class="fade-in space-y-6">
+      <div class="sketch-card bg-white p-5 sm:p-7">
+        <div class="washi-tape washi-yellow"></div>
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-black flex items-center gap-2">
+              <span>🎒</span> 歡迎來到〈用心看世界〉自主學習手帳！
+            </h2>
+            <p class="text-sm sm:text-base text-[#7a5f4b] mt-1.5 leading-relaxed">
+              這學期我們要透過不同視角認識世界文化！先到西班牙欣賞高第充滿生命力的魔法建築，再去日本、印度、義大利與韓國品嘗各國家鄉味。看完圖鑑、玩完修辭小遊戲，就來挑戰 <strong>25 題完整版自我測驗</strong>，把成績單一鍵複製貼到 Google Classroom 繳交吧！
+            </p>
+          </div>
+          <button onclick="quickStartQuiz('all')" class="sketch-btn bg-[#FFD6E0] px-5 py-3.5 text-base shrink-0">
+            🚀 開始 25 題總測驗
+          </button>
+        </div>
+
+        <!-- 學習進度追蹤卡片 -->
+        <div class="mt-5 grid grid-cols-1 md:grid-cols-3 gap-3.5">
+          <div class="md:col-span-2 bg-[#FFFDF6] border-2 border-[#4a3525] rounded-2xl p-4">
+            <div class="flex items-center justify-between text-sm font-black mb-2">
+              <span>🌟 圖鑑卡片探索進度（第7、8課共 8 張）</span>
+              <span id="homeProgressText" class="text-[#E76F51]">0% (0/8)</span>
+            </div>
+            <div class="w-full h-5 bg-[#F3ECE1] border-2 border-[#4a3525] rounded-full overflow-hidden">
+              <div id="homeProgressBar" class="h-full bg-gradient-to-r from-[#FFD166] via-[#FF9EB5] to-[#80ED99] transition-all duration-500" style="width: 0%"></div>
+            </div>
+            <p class="text-xs font-bold text-[#7a5f4b] mt-2">💡 點開第7課「建築魔法圖鑑」與第8課「世界美食護照」即可自動記錄進度！</p>
+          </div>
+          <div class="bg-[#D8F3DC]/60 border-2 border-[#4a3525] rounded-2xl p-4 flex flex-col justify-center items-center text-center">
+            <div class="text-xs font-black text-[#7a5f4b]">🏆 我的測驗最高紀錄</div>
+            <div class="text-3xl font-black text-[#2A9D8F] my-1" id="homeBestScoreBig">尚未挑戰</div>
+            <div class="text-xs font-bold text-[#4a3525]">自動儲存於本機瀏覽器</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 兩課總覽卡片 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- 第 7 課總覽 -->
+        <div class="sketch-card sketch-card-hover bg-[#D0EBFF]/45 p-6 flex flex-col justify-between">
+          <div class="washi-tape washi-sky"></div>
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-3 py-1 rounded-full bg-white border-2 border-[#4a3525] text-xs font-black">第7課・記敘文本</span>
+              <span class="text-xs font-bold text-[#7a5f4b]">作者：嚴淑女</span>
+            </div>
+            <h3 class="text-2xl font-black mb-2">🏰 高第的魔法建築</h3>
+            <div class="bg-white/90 border-2 border-[#4a3525] rounded-2xl p-3.5 text-sm leading-relaxed space-y-2 mb-4">
+              <p><strong class="text-[#1D6FA3]">📖 課文大意：</strong>參觀西班牙巴塞隆納的米拉之家、巴特羅之家、奎爾公園與聖家堂，感受高第融入大自然曲線與奇思妙想的建築魅力。</p>
+              <p><strong class="text-[#E76F51]">✨ 學習焦點：</strong>譬喻修辭辨識、「登」字形近字、建築四字語詞、習作延伸閱讀（光之教堂、蘭陽博物館）。</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2.5">
+            <button onclick="switchTab('lesson7')" class="sketch-btn bg-[#FFF3B0] flex-1 py-3 px-4 text-sm sm:text-base">
+              🔍 進入第7課教室
+            </button>
+            <button onclick="quickStartQuiz('l7')" class="sketch-btn bg-white py-3 px-4 text-sm sm:text-base">
+              📝 專攻測驗 (13題)
+            </button>
+          </div>
+        </div>
+
+        <!-- 第 8 課總覽 -->
+        <div class="sketch-card sketch-card-hover bg-[#FFE5CC]/55 p-6 flex flex-col justify-between">
+          <div class="washi-tape washi-pink"></div>
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-3 py-1 rounded-full bg-white border-2 border-[#4a3525] text-xs font-black">第8課・童詩</span>
+              <span class="text-xs font-bold text-[#7a5f4b]">作者：王宗仁</span>
+            </div>
+            <h3 class="text-2xl font-black mb-2">🍱 嘗嘗我的家鄉味</h3>
+            <div class="bg-white/90 border-2 border-[#4a3525] rounded-2xl p-3.5 text-sm leading-relaxed space-y-2 mb-4">
+              <p><strong class="text-[#C85A17]">📖 課文大意：</strong>以「來，讓我用家鄉味招待你」串聯，用生動的聯想介紹日本壽司、印度咖哩和麥餅、義大利披薩與韓國辛奇。</p>
+              <p><strong class="text-[#2A9D8F]">✨ 學習焦點：</strong>疊字修辭與節奏感、擬人法賞析、習作〈美味大挑戰〉猜謎詩、〈臺灣好滋味〉童詩創作。</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2.5">
+            <button onclick="switchTab('lesson8')" class="sketch-btn bg-[#D8F3DC] flex-1 py-3 px-4 text-sm sm:text-base">
+              🍽️ 進入第8課教室
+            </button>
+            <button onclick="quickStartQuiz('l8')" class="sketch-btn bg-white py-3 px-4 text-sm sm:text-base">
+              📝 專攻測驗 (12題)
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 分頁 2：🏰 第7課互動教室 ==================== -->
+    <section id="section-lesson7" class="hidden fade-in space-y-7">
+      <div class="sketch-card bg-[#D0EBFF]/55 p-5 sm:p-6">
+        <div class="washi-tape washi-sky"></div>
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+          <span class="px-3 py-1 rounded-full bg-white border-2 border-[#4a3525] text-xs font-black">第7課・記敘文本・西班牙巴塞隆納</span>
+          <span class="text-sm font-bold text-[#7a5f4b]">作者：嚴淑女</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black">🏰 高第的魔法建築</h2>
+        <p class="text-sm sm:text-base mt-2 leading-relaxed">
+          從小喜歡觀察大自然的高第，把樹木、花草、貝殼、海浪和昆蟲翅膀的曲線放進建築物當中，讓<span class="hl-redup">圓弧流動的線條</span>成為他作品的特色，給了建築物神奇的生命力！
+        </p>
+      </div>
+
+      <!-- 建築魔法圖鑑（4 張可點擊展開手繪卡片） -->
+      <div>
+        <h3 class="text-xl font-black mb-3 flex items-center gap-2"><span>✨</span> 建築魔法圖鑑（點擊卡片展開外觀特色、作者聯想與課文金句！）</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5" id="l7-gallery"></div>
+      </div>
+
+      <!-- 互動小遊戲區 -->
+      <div class="sketch-card bg-[#FFFDF6] p-5 sm:p-6 space-y-6">
+        <div class="washi-tape washi-yellow"></div>
+        <h3 class="text-xl sm:text-2xl font-black flex items-center gap-2"><span>🎮</span> 第7課互動練功房</h3>
+
+        <!-- 互動小遊戲 A：譬喻偵探社 -->
+        <div class="bg-[#FFF3B0]/60 border-2 border-[#4a3525] rounded-2xl p-4 sm:p-5">
+          <h4 class="text-lg font-black mb-1.5">🕵️ 互動小遊戲 A【譬喻偵探社】</h4>
+          <p class="text-sm sm:text-base leading-relaxed mb-3">
+            找出兩種<strong>不同事物之間的相似點</strong>，用「如、像、有如、好似、宛如、彷彿」打比方，才是譬喻修辭喔！小心習作裡的「長相相似」陷阱題！
+          </p>
+          <div class="space-y-3" id="metaphorQuizContainer"></div>
+        </div>
+
+        <!-- 互動小遊戲 B：「登」字家族形近字 -->
+        <div class="bg-[#D8F3DC]/55 border-2 border-[#4a3525] rounded-2xl p-4 sm:p-5">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+            <h4 class="text-lg font-black">🧩 互動小遊戲 B【「登」字家族形近字】</h4>
+            <button onclick="resetDengQuiz()" class="sketch-btn bg-[#FFE5CC] px-3 py-1.5 text-xs sm:text-sm">🔄 重新配對</button>
+          </div>
+          <p class="text-sm text-[#7a5f4b] mb-3">步驟 1：點選下方字卡 ➡ 步驟 2：點選句子裡的「？」空格填入！</p>
+          <div class="flex flex-wrap gap-2.5 mb-4">
+            <button onclick="selectDengChar('澄')" class="deng-chip sketch-btn bg-white px-4 py-2 text-base" data-char="澄">💧 澄 (ㄔㄥˊ)</button>
+            <button onclick="selectDengChar('瞪')" class="deng-chip sketch-btn bg-white px-4 py-2 text-base" data-char="瞪">👀 瞪 (ㄉㄥˋ)</button>
+            <button onclick="selectDengChar('燈')" class="deng-chip sketch-btn bg-white px-4 py-2 text-base" data-char="燈">💡 燈 (ㄉㄥ)</button>
+          </div>
+          <div class="space-y-2.5 text-sm sm:text-base font-bold">
+            <div class="bg-white border-2 border-[#4a3525] rounded-xl p-3 flex flex-wrap items-center gap-1.5">
+              <span>1. 這片湖水非常</span>
+              <button onclick="fillDengBlank(0)" id="deng-blank-0" class="min-w-[44px] h-9 px-2 border-2 border-dashed border-[#4a3525] rounded-lg bg-[#FFFDF6] font-black text-[#1D6FA3] hover:bg-[#FFF3B0]">？</button>
+              <span>淨，魚、蝦清晰可見。</span>
+              <span id="deng-fb-0" class="text-xs ml-auto"></span>
+            </div>
+            <div class="bg-white border-2 border-[#4a3525] rounded-xl p-3 flex flex-wrap items-center gap-1.5">
+              <span>2. 魔術師登臺表演，精湛的手法，讓人看得目</span>
+              <button onclick="fillDengBlank(1)" id="deng-blank-1" class="min-w-[44px] h-9 px-2 border-2 border-dashed border-[#4a3525] rounded-lg bg-[#FFFDF6] font-black text-[#1D6FA3] hover:bg-[#FFF3B0]">？</button>
+              <span>口呆。</span>
+              <span id="deng-fb-1" class="text-xs ml-auto"></span>
+            </div>
+            <div class="bg-white border-2 border-[#4a3525] rounded-xl p-3 flex flex-wrap items-center gap-1.5">
+              <span>3. 舞臺上，五彩</span>
+              <button onclick="fillDengBlank(2)" id="deng-blank-2" class="min-w-[44px] h-9 px-2 border-2 border-dashed border-[#4a3525] rounded-lg bg-[#FFFDF6] font-black text-[#1D6FA3] hover:bg-[#FFF3B0]">？</button>
+              <span>光絢麗迷人，更增添幾分神秘色彩。</span>
+              <span id="deng-fb-2" class="text-xs ml-auto"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 互動小遊戲 C：建築四字語詞箱 -->
+        <div class="bg-[#EDE4FF]/65 border-2 border-[#4a3525] rounded-2xl p-4 sm:p-5">
+          <h4 class="text-lg font-black mb-1.5">📦 互動小遊戲 C【建築四字語詞箱】</h4>
+          <p class="text-sm text-[#7a5f4b] mb-3">先點擊語詞看意思，再試試看底下的例句配對挑戰！</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div class="bg-white border-2 border-[#4a3525] rounded-2xl p-3.5">
+              <div class="text-xs font-black px-2.5 py-1 rounded-full bg-[#FFF3B0] border border-[#4a3525] inline-block mb-2">✨ 形容華麗宏偉、獨特出眾</div>
+              <div class="flex flex-wrap gap-2">
+                <button onclick="showIdiomDetail('金碧輝煌')" class="sketch-btn bg-[#FFFDF6] px-3 py-1.5 text-sm">金碧輝煌</button>
+                <button onclick="showIdiomDetail('雕梁畫棟')" class="sketch-btn bg-[#FFFDF6] px-3 py-1.5 text-sm">雕梁畫棟</button>
+                <button onclick="showIdiomDetail('富麗堂皇')" class="sketch-btn bg-[#FFFDF6] px-3 py-1.5 text-sm">富麗堂皇</button>
+                <button onclick="showIdiomDetail('獨樹一格')" class="sketch-btn bg-[#FFFDF6] px-3 py-1.5 text-sm">獨樹一格</button>
+              </div>
+            </div>
+            <div class="bg-white border-2 border-[#4a3525] rounded-2xl p-3.5">
+              <div class="text-xs font-black px-2.5 py-1 rounded-full bg-[#FFD6E0] border border-[#4a3525] inline-block mb-2">🏚️ 形容殘破老舊、危險</div>
+              <div class="flex flex-wrap gap-2">
+                <button onclick="showIdiomDetail('滿目瘡痍')" class="sketch-btn bg-[#FFFDF6] px-3 py-1.5 text-sm">滿目瘡痍</button>
+                <button onclick="showIdiomDetail('破舊不堪')" class="sketch-btn bg-[#FFFDF6] px-3 py-1.5 text-sm">破舊不堪</button>
+                <button onclick="showIdiomDetail('搖搖欲墜')" class="sketch-btn bg-[#FFFDF6] px-3 py-1.5 text-sm">搖搖欲墜</button>
+              </div>
+            </div>
+          </div>
+          <div id="idiomDetailBox" class="mt-3 bg-white border-2 border-[#4a3525] rounded-2xl p-3.5 text-sm font-bold text-[#7a5f4b]">
+            👆 點選上面任一個四字語詞，就會顯示白話解釋與例句喔！
+          </div>
+          <!-- 語詞配對小挑戰 -->
+          <div class="mt-3 bg-white border-2 border-[#4a3525] rounded-2xl p-3.5 space-y-2.5 text-sm">
+            <div class="font-black text-[#9B5DE5]">⚡ 語詞閃電配對（選出最適合的語詞）：</div>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-[#FFFDF6] p-2.5 rounded-xl border border-[#DFD1BE]">
+              <span class="font-bold">1. 強烈的地震讓這棟大樓（＿＿），似乎隨時要倒塌。</span>
+              <div class="flex gap-2 shrink-0">
+                <button onclick="checkIdiomMini(1, true, this)" class="sketch-btn bg-white px-3 py-1 text-xs">搖搖欲墜</button>
+                <button onclick="checkIdiomMini(1, false, this)" class="sketch-btn bg-white px-3 py-1 text-xs">富麗堂皇</button>
+              </div>
+            </div>
+            <div id="idiom-mini-fb-1" class="hidden text-xs font-black px-2"></div>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-[#FFFDF6] p-2.5 rounded-xl border border-[#DFD1BE]">
+              <span class="font-bold">2. 這座宮殿梁柱雕刻精細、牆面彩繪栩栩如生，真是（＿＿）。</span>
+              <div class="flex gap-2 shrink-0">
+                <button onclick="checkIdiomMini(2, false, this)" class="sketch-btn bg-white px-3 py-1 text-xs">滿目瘡痍</button>
+                <button onclick="checkIdiomMini(2, true, this)" class="sketch-btn bg-white px-3 py-1 text-xs">富麗堂皇</button>
+              </div>
+            </div>
+            <div id="idiom-mini-fb-2" class="hidden text-xs font-black px-2"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 習作延伸閱讀小卡 -->
+      <div class="sketch-card bg-white p-5 sm:p-6">
+        <div class="washi-tape washi-mint"></div>
+        <h3 class="text-xl font-black mb-4 flex items-center gap-2"><span>🪟</span> 延伸閱讀小卡：光之教堂 vs 蘭陽博物館</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-[#F8F9FA] border-2 border-[#4a3525] rounded-2xl p-4 flex gap-3.5 items-start">
+            <svg width="74" height="74" viewBox="0 0 80 80" class="shrink-0 rounded-xl border-2 border-[#4a3525]">
+              <rect x="0" y="0" width="80" height="80" fill="#5C636A"/>
+              <rect x="35" y="10" width="10" height="60" fill="#FFF3B0"/>
+              <rect x="14" y="28" width="52" height="10" fill="#FFF3B0"/>
+              <polygon points="35,38 14,78 66,78 45,38" fill="#FFE66D" opacity="0.35"/>
+            </svg>
+            <div class="text-sm leading-relaxed space-y-1">
+              <div class="font-black text-base">🇯🇵 日本大阪：光之教堂</div>
+              <p><strong>建築師：</strong>安藤忠雄</p>
+              <p><strong>建材與主題：</strong>以<span class="hl-redup">清水混凝土</span>構成箱型建築，強調自然要素「光」。</p>
+              <p><strong>真正魅力：</strong>陽光透過牆面<strong>十字開口</strong>流瀉進來，清澈純淨、撼動人心！</p>
+            </div>
+          </div>
+
+          <div class="bg-[#E8F6F3] border-2 border-[#4a3525] rounded-2xl p-4 flex gap-3.5 items-start">
+            <svg width="74" height="74" viewBox="0 0 80 80" class="shrink-0 rounded-xl border-2 border-[#4a3525] bg-[#BEE3F8]">
+              <rect x="0" y="54" width="80" height="26" fill="#74C0FC"/>
+              <polygon points="10,56 58,18 72,56" fill="#5C677D" stroke="#4a3525" stroke-width="2.2" stroke-linejoin="round"/>
+              <line x1="25" y1="45" x2="66" y2="45" stroke="#A7E8BD" stroke-width="2.5"/>
+              <line x1="38" y1="35" x2="63" y2="35" stroke="#FFE082" stroke-width="2.5"/>
+              <line x1="49" y1="26" x2="60" y2="26" stroke="#FFB3C6" stroke-width="2.5"/>
+            </svg>
+            <div class="text-sm leading-relaxed space-y-1">
+              <div class="font-black text-base">🇹🇼 臺灣宜蘭：蘭陽博物館</div>
+              <p><strong>建築團隊：</strong>姚仁喜建築團隊</p>
+              <p><strong>建材與造型：</strong>外牆以不同石材為主，以東北角海岸「<span class="hl-mint">單面山</span>」為三角錐主體。</p>
+              <p><strong>設計靈感：</strong>以韋瓦第《四季》協奏曲化為音符，呈現蘭陽平原<strong>四季田野與農田景致</strong>！</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 分頁 3：🍱 第8課互動教室 ==================== -->
+    <section id="section-lesson8" class="hidden fade-in space-y-7">
+      <div class="sketch-card bg-[#FFE5CC]/65 p-5 sm:p-6">
+        <div class="washi-tape washi-pink"></div>
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+          <span class="px-3 py-1 rounded-full bg-white border-2 border-[#4a3525] text-xs font-black">第8課・童詩・世界飲食文化</span>
+          <span class="text-sm font-bold text-[#7a5f4b]">作者：王宗仁</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black">🍱 嘗嘗我的家鄉味</h2>
+        <p class="text-sm sm:text-base mt-2 leading-relaxed">
+          「來，讓我用家鄉味招待你！」詩人善用輕快的<span class="hl-redup">疊字詞</span>與活潑的<span class="hl-person">擬人法</span>，讓日本壽司、印度咖哩、義大利披薩與韓國辛奇在舞臺上粉墨登場！
+        </p>
+      </div>
+
+      <!-- 世界美食護照（4 張手繪插圖互動卡片） -->
+      <div>
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+          <h3 class="text-xl font-black flex items-center gap-2"><span>🛂</span> 世界美食護照（點擊卡片集章，賞析疊字與擬人！）</h3>
+          <div class="flex items-center gap-2 text-xs font-black">
+            <span class="hl-redup px-2 py-0.5">黃色＝疊字詞</span>
+            <span class="hl-person px-2 py-0.5">粉色＝擬人法</span>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5" id="l8-gallery"></div>
+      </div>
+
+      <!-- 互動小遊戲與寫作加油站 -->
+      <div class="sketch-card bg-white p-5 sm:p-6 space-y-6">
+        <div class="washi-tape washi-yellow"></div>
+        <h3 class="text-xl sm:text-2xl font-black flex items-center gap-2"><span>🎵</span> 第8課童詩魔法與寫作加油站</h3>
+
+        <!-- 互動小遊戲 A：疊字節奏比一比 -->
+        <div class="bg-[#FFF3B0]/60 border-2 border-[#4a3525] rounded-2xl p-4 sm:p-5">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+            <h4 class="text-lg font-black">🥁 互動小遊戲 A【疊字節奏比一比】</h4>
+            <div class="flex gap-2">
+              <button onclick="setRedupMode('plain')" id="btn-redup-plain" class="sketch-btn bg-white px-3.5 py-1.5 text-sm">無疊字句子</button>
+              <button onclick="setRedupMode('redup')" id="btn-redup-redup" class="sketch-btn bg-[#FFD6E0] px-3.5 py-1.5 text-sm">✨ 有疊字句子</button>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="redupCompareBox"></div>
+          <p class="text-sm font-bold text-[#7a5f4b] mt-3">
+            💡 念念看！加入疊字詞後，詩句讀起來是不是更有<strong>節奏感</strong>，也多了幾分<strong>趣味與畫面感</strong>呢？
+          </p>
+        </div>
+
+        <!-- 互動小遊戲 B：美味大挑戰（習作猜謎詩） -->
+        <div class="bg-[#FFD6E0]/45 border-2 border-[#4a3525] rounded-2xl p-4 sm:p-5">
+          <h4 class="text-lg font-black mb-1.5">🕵️ 互動小遊戲 B【美味大挑戰（習作猜謎詩）】</h4>
+          <p class="text-sm text-[#7a5f4b] mb-3">讀讀看這兩首描寫食物的詩，根據線索猜出謎底吧！</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- 謎題一：番茄 -->
+            <div class="bg-white border-2 border-[#4a3525] rounded-2xl p-4">
+              <div class="text-xs font-black text-[#E76F51] mb-1">謎題 1｜林玉山 作品（提示：是水果也是蔬菜）</div>
+              <div class="bg-[#FFFDF6] border-2 border-dashed border-[#DFD1BE] rounded-xl p-3 text-sm sm:text-base font-bold leading-relaxed mb-3">
+                果如紅柿出西洋，<br/>
+                氣味芳香養素強。<br/>
+                憶昔無多人賞識，<br/>
+                年來釀醬作羹湯。
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button onclick="guessRiddle(1, '蘋果')" class="sketch-btn bg-[#FFFDF6] px-3 py-1.5 text-sm">🍎 蘋果</button>
+                <button onclick="guessRiddle(1, '番茄')" class="sketch-btn bg-[#FFFDF6] px-3 py-1.5 text-sm">🍅 番茄</button>
+                <button onclick="guessRiddle(1, '西瓜')" class="sketch-btn bg-[#FFFDF6] px-3 py-1.5 text-sm">🍉 西瓜</button>
+              </div>
+              <div id="riddle-fb-1" class="text-sm font-bold hidden mt-2.5 p-2.5 rounded-xl border-2 border-[#4a3525]"></div>
+            </div>
+
+            <!-- 謎題二：香蕉 -->
+            <div class="bg-white border-2 border-[#4a3525] rounded-2xl p-4">
+              <div class="text-xs font-black text-[#2A9D8F] mb-1">謎題 2｜李思嫻 作品（提示：臺灣著名的水果）</div>
+              <div class="bg-[#FFFDF6] border-2 border-dashed border-[#DFD1BE] rounded-xl p-3 text-sm sm:text-base font-bold leading-relaxed mb-3">
+                穿著黃色的防晒衣<br/>
+                戴著一頂細長棕色的帽子<br/>
+                懶洋洋的在水果店裡晒太陽<br/>
+                突然感覺冷冷的／是誰把我的防晒衣脫了
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button onclick="guessRiddle(2, '鳳梨')" class="sketch-btn bg-[#FFFDF6] px-3 py-1.5 text-sm">🍍 鳳梨</button>
+                <button onclick="guessRiddle(2, '香蕉')" class="sketch-btn bg-[#FFFDF6] px-3 py-1.5 text-sm">🍌 香蕉</button>
+                <button onclick="guessRiddle(2, '木瓜')" class="sketch-btn bg-[#FFFDF6] px-3 py-1.5 text-sm">🍈 木瓜</button>
+              </div>
+              <div id="riddle-fb-2" class="text-sm font-bold hidden mt-2.5 p-2.5 rounded-xl border-2 border-[#4a3525]"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 寫作加油站：臺灣好滋味童詩變身 -->
+        <div class="bg-[#D8F3DC]/50 border-2 border-[#4a3525] rounded-2xl p-4 sm:p-5">
+          <h4 class="text-lg font-black mb-1.5">✍️ 寫作加油站【臺灣好滋味童詩變身】</h4>
+          <p class="text-sm text-[#7a5f4b] mb-3">三步驟變身童詩：<strong>① 展開聯想 ➡ ② 句子變身（加入生動形容與想像） ➡ ③ 適時分行</strong>！</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+            <div class="bg-white border-2 border-[#4a3525] rounded-2xl p-4 space-y-2">
+              <div class="font-black text-base">🧋 範例 1：珍珠奶茶</div>
+              <div class="text-xs font-bold text-[#7a5f4b] bg-[#FFFDF6] p-2 rounded-lg border border-[#DFD1BE]">
+                <strong>① 展開聯想：</strong>粉圓 ➡ 黑珍珠／冰塊 ➡ 冰山／奶茶 ➡ 褐色大海
+              </div>
+              <div class="text-[#7a5f4b] bg-[#F8F9FA] p-2.5 rounded-xl">
+                <strong>原本句子：</strong>奶茶裡，加入Q彈的粉圓和晶瑩的冰塊，攪拌成甜蜜的飲料。
+              </div>
+              <div class="bg-[#FFF3B0]/70 border-2 border-[#4a3525] p-3 rounded-xl font-black leading-relaxed">
+                ✨ <strong>②③ 變身與分行：</strong><br/>
+                一顆一顆<br/>
+                黑珍珠撞擊冰山<br/>
+                翻滾出褐色大海裡誘人的香甜
+              </div>
+            </div>
+
+            <div class="bg-white border-2 border-[#4a3525] rounded-2xl p-4 space-y-2">
+              <div class="font-black text-base">🍵 範例 2：臺灣泡茶</div>
+              <div class="text-xs font-bold text-[#7a5f4b] bg-[#FFFDF6] p-2 rounded-lg border border-[#DFD1BE]">
+                <strong>① 展開聯想：</strong>熱水 ➡ 溫泉／舒展 ➡ 迴旋舞動／黃澄澄 ➡ 琥珀色
+              </div>
+              <div class="text-[#7a5f4b] bg-[#F8F9FA] p-2.5 rounded-xl">
+                <strong>原本句子：</strong>茶葉在熱水中漸漸舒展，白開水變得黃澄澄的，散發茶香。
+              </div>
+              <div class="bg-[#D8F3DC]/70 border-2 border-[#4a3525] p-3 rounded-xl font-black leading-relaxed">
+                ✨ <strong>②③ 變身與分行：</strong><br/>
+                一片一片<br/>
+                茶葉在溫泉中迴旋<br/>
+                舞動出琥珀色的芬芳
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 分頁 4：📝 線上自我測驗（25題完整版） ==================== -->
+    <section id="section-quiz" class="hidden fade-in">
+
+      <!-- 階段一：測驗準備畫面 -->
+      <div id="quiz-stage-setup" class="sketch-card bg-white p-5 sm:p-8 max-w-3xl mx-auto">
+        <div class="washi-tape washi-mint"></div>
+        <div class="text-center mb-6">
+          <span class="px-3 py-1 rounded-full bg-[#D8F3DC] border-2 border-[#4a3525] text-xs font-black">Google Classroom 作業專用</span>
+          <h2 class="text-2xl sm:text-3xl font-black mt-2">📝 線上自我測驗（25題完整版）</h2>
+          <p class="text-sm sm:text-base text-[#7a5f4b] mt-1">先填寫你的班級、座號、姓名，考完即可「一鍵複製成績單文字」貼上 Google Classroom 繳交！</p>
+        </div>
+
+        <!-- Google Classroom 學生資料填寫區 -->
+        <div id="setupStudentBox" class="bg-[#FFF3B0]/65 border-2 border-[#4a3525] rounded-2xl p-4 sm:p-5 mb-6">
+          <div class="font-black text-base sm:text-lg mb-3 flex items-center gap-2">
+            <span>📋</span> Google Classroom 學生資料填寫區
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+            <div>
+              <label for="setupClass" class="block text-sm font-black mb-1">班級 <span class="text-[#E63946]">*</span></label>
+              <input id="setupClass" type="text" placeholder="例如：五年一班" class="sketch-input w-full text-base" oninput="saveStudentInfoFromSetup()" />
+            </div>
+            <div>
+              <label for="setupSeat" class="block text-sm font-black mb-1">座號 <span class="text-[#E63946]">*</span></label>
+              <input id="setupSeat" type="text" placeholder="例如：05" class="sketch-input w-full text-base" oninput="saveStudentInfoFromSetup()" />
+            </div>
+            <div>
+              <label for="setupName" class="block text-sm font-black mb-1">姓名 <span class="text-[#E63946]">*</span></label>
+              <input id="setupName" type="text" placeholder="例如：王小明" class="sketch-input w-full text-base" oninput="saveStudentInfoFromSetup()" />
+            </div>
+          </div>
+          <p class="text-xs text-[#7a5f4b] font-bold mt-2.5">💾 資料會自動記憶於瀏覽器，交卷結算畫面也可以隨時修改喔！</p>
+        </div>
+
+        <!-- 測驗模式選擇 -->
+        <div class="mb-7">
+          <div class="font-black text-base sm:text-lg mb-3 flex items-center gap-2">
+            <span>🎯</span> 選擇測驗模式
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <button onclick="selectQuizScope('all')" id="scope-all" class="sketch-btn bg-[#FFD6E0] p-4 text-left">
+              <div class="text-base sm:text-lg font-black">🌟 綜合總測驗</div>
+              <div class="text-xs text-[#4a3525] mt-1 font-bold">完整 25 題・每題 4 分（滿分 100）</div>
+            </button>
+            <button onclick="selectQuizScope('l7')" id="scope-l7" class="sketch-btn bg-white p-4 text-left">
+              <div class="text-base sm:text-lg font-black">🏰 第7課專攻測驗</div>
+              <div class="text-xs text-[#7a5f4b] mt-1 font-bold">精選 13 題・滿分 100 分</div>
+            </button>
+            <button onclick="selectQuizScope('l8')" id="scope-l8" class="sketch-btn bg-white p-4 text-left">
+              <div class="text-base sm:text-lg font-black">🍱 第8課專攻測驗</div>
+              <div class="text-xs text-[#7a5f4b] mt-1 font-bold">精選 12 題・滿分 100 分</div>
+            </button>
+          </div>
+        </div>
+
+        <button onclick="startQuiz()" class="sketch-btn bg-[#80ED99] w-full py-4 text-xl font-black">
+          🚀 開始測驗！
+        </button>
+      </div>
+
+      <!-- 階段二：作答畫面（即答即評解析模式） -->
+      <div id="quiz-stage-playing" class="hidden max-w-3xl mx-auto space-y-4">
+        <!-- 頂部狀態與進度條 -->
+        <div class="sketch-card bg-[#FFF3B0]/75 p-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm font-black mb-2">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded-full bg-white border-2 border-[#4a3525]" id="playScopeLabel">🌟 綜合總測驗</span>
+              <span>🧑‍🎓 <span id="playStudentLabel">王小明</span></span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <span>📌 第 <span id="playCurrentNum">1</span> / <span id="playTotalNum">25</span> 題</span>
+              <span class="px-2.5 py-0.5 rounded-full bg-white border-2 border-[#4a3525]">⏱️ <span id="playTimer">00:00</span></span>
+            </div>
+          </div>
+          <div class="w-full h-3.5 bg-white border-2 border-[#4a3525] rounded-full overflow-hidden">
+            <div id="playProgressBar" class="h-full bg-[#FF9EB5] transition-all duration-300" style="width: 4%"></div>
+          </div>
+        </div>
+
+        <!-- 題目卡片 -->
+        <div id="questionCard" class="sketch-card bg-white p-5 sm:p-7">
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <span id="questionTag" class="px-3 py-1 rounded-full bg-[#D0EBFF] border-2 border-[#4a3525] text-xs font-black">第7課・字音字形</span>
+            <span id="questionBadge" class="text-xs font-black text-[#7a5f4b]">第 1 題</span>
+          </div>
+
+          <h3 id="questionText" class="text-lg sm:text-xl font-black leading-relaxed mb-5">
+            題目載入中...
+          </h3>
+
+          <!-- A / B / C / D 選項 -->
+          <div id="optionsContainer" class="space-y-3"></div>
+
+          <!-- 選答後即時顯示的對錯與白話解析盒 -->
+          <div id="instantFeedbackBox" class="hidden mt-5 p-4 rounded-2xl border-2 border-[#4a3525] fade-in">
+            <div id="instantFeedbackTitle" class="text-base sm:text-lg font-black mb-1"></div>
+            <p id="instantFeedbackExplain" class="text-sm sm:text-base font-medium leading-relaxed"></p>
+          </div>
+
+          <!-- 下一步按鈕列 -->
+          <div class="mt-6 flex items-center justify-between gap-3 pt-4 border-t-2 border-dashed border-[#DFD1BE]">
+            <button onclick="resetToQuizSetup()" class="sketch-btn bg-white px-4 py-2.5 text-sm text-[#7a5f4b]">
+              🔙 回準備畫面
+            </button>
+            <button onclick="goNextOrFinish()" id="btnNextStep" class="hidden sketch-btn bg-[#FFF3B0] px-6 py-3 text-base font-black">
+              下一題 ➡️
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 階段三：交卷結算畫面（Google Classroom 專用成績單） -->
+      <div id="quiz-stage-result" class="hidden max-w-3xl mx-auto space-y-6">
+        <!-- 獎章與成績總覽 -->
+        <div class="sketch-card bg-gradient-to-b from-[#FFF3B0]/85 to-[#FFFFFF] p-6 sm:p-8 text-center">
+          <div class="washi-tape washi-yellow"></div>
+          <div class="flex justify-center mb-3">
+            <!-- 可愛手繪獎章 SVG -->
+            <svg width="96" height="96" viewBox="0 0 100 100" fill="none">
+              <circle cx="50" cy="50" r="44" fill="#FFF3B0" stroke="#4a3525" stroke-width="2.5" stroke-dasharray="6 4"/>
+              <path d="M30 26 H70 V44 C70 57, 60 66, 50 66 C40 66, 30 57, 30 44 Z" fill="#FFD166" stroke="#4a3525" stroke-width="2.8"/>
+              <path d="M30 32 C20 32, 18 46, 29 50" stroke="#4a3525" stroke-width="2.8" stroke-linecap="round"/>
+              <path d="M70 32 C80 32, 82 46, 71 50" stroke="#4a3525" stroke-width="2.8" stroke-linecap="round"/>
+              <rect x="45" y="66" width="10" height="10" fill="#F4A261" stroke="#4a3525" stroke-width="2.5"/>
+              <rect x="33" y="76" width="34" height="9" rx="4" fill="#E76F51" stroke="#4a3525" stroke-width="2.5"/>
+              <path d="M50 34 L53 41 L60 42 L55 47 L56 54 L50 50 L44 54 L45 47 L40 42 L47 41 Z" fill="#FFFFFF" stroke="#4a3525" stroke-width="2"/>
+            </svg>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black" id="resultEncourageTitle">太棒了！</h2>
+          <div class="my-4 inline-flex items-baseline gap-2 bg-white border-2 border-[#4a3525] rounded-3xl px-7 py-3 shadow-[4px_4px_0px_#4a3525]">
+            <span class="text-5xl sm:text-6xl font-black text-[#E76F51]" id="resultScoreNum">100</span>
+            <span class="text-xl font-black">/ 100 分</span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mt-4 text-sm">
+            <div class="bg-[#D8F3DC] border-2 border-[#4a3525] rounded-2xl p-2.5">
+              <div class="text-xs font-bold text-[#7a5f4b]">答對題數</div>
+              <div class="text-lg font-black text-[#2A9D8F]" id="resultCorrectRatio">25 / 25 題</div>
+            </div>
+            <div class="bg-[#FFD6E0] border-2 border-[#4a3525] rounded-2xl p-2.5">
+              <div class="text-xs font-bold text-[#7a5f4b]">正確率</div>
+              <div class="text-lg font-black text-[#E63946]" id="resultAccuracy">100%</div>
+            </div>
+            <div class="bg-[#D0EBFF] border-2 border-[#4a3525] rounded-2xl p-2.5">
+              <div class="text-xs font-bold text-[#7a5f4b]">作答耗時</div>
+              <div class="text-lg font-black text-[#1D6FA3]" id="resultDuration">02分10秒</div>
+            </div>
+            <div class="bg-[#FFF3B0] border-2 border-[#4a3525] rounded-2xl p-2.5">
+              <div class="text-xs font-bold text-[#7a5f4b]">完成時間</div>
+              <div class="text-xs font-black mt-1 leading-tight" id="resultFinishTime">2026/11/22 13:00:00</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Google Classroom 專用成績單確認與一鍵複製區 -->
+        <div class="sketch-card bg-[#D8F3DC]/45 p-5 sm:p-6">
+          <div class="washi-tape washi-pink"></div>
+          <h3 class="text-xl font-black mb-1 flex items-center gap-2">
+            <span>📋</span> Google Classroom 專用成績單
+          </h3>
+          <p class="text-sm text-[#7a5f4b] font-bold mb-4">
+            如果剛才忘記填寫或打錯資料，可以在下方直接修改（會<strong>即時同步</strong>更新成績單與準備畫面喔！），確認後點按按鈕一鍵複製繳交！
+          </p>
+
+          <!-- 雙向同步的學生資料確認與修改欄 -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4 bg-white border-2 border-[#4a3525] rounded-2xl p-3.5">
+            <div>
+              <label for="resultClass" class="block text-xs font-black mb-1">班級（即時修改）</label>
+              <input id="resultClass" type="text" placeholder="例如：五年一班" class="sketch-input w-full text-sm py-2" oninput="syncResultStudentInfo()" />
+            </div>
+            <div>
+              <label for="resultSeat" class="block text-xs font-black mb-1">座號（即時修改）</label>
+              <input id="resultSeat" type="text" placeholder="例如：05" class="sketch-input w-full text-sm py-2" oninput="syncResultStudentInfo()" />
+            </div>
+            <div>
+              <label for="resultName" class="block text-xs font-black mb-1">姓名（即時修改）</label>
+              <input id="resultName" type="text" placeholder="例如：王小明" class="sketch-input w-full text-sm py-2" oninput="syncResultStudentInfo()" />
+            </div>
+          </div>
+
+          <!-- 成績單文字預覽框 -->
+          <div class="mb-4">
+            <label for="reportPreview" class="block text-xs font-black text-[#7a5f4b] mb-1.5">📄 成績單文字預覽：</label>
+            <textarea id="reportPreview" readonly rows="8" class="w-full border-2 border-[#4a3525] rounded-2xl bg-[#FFFDF6] p-3.5 text-sm font-bold leading-relaxed text-[#4a3525] focus:outline-none resize-none"></textarea>
+          </div>
+
+          <!-- 一鍵複製按鈕與再挑戰一次 -->
+          <div class="flex flex-col sm:flex-row gap-3">
+            <button onclick="copyReportText()" id="btnCopyReport" class="sketch-btn bg-[#FFD166] flex-1 py-4 px-5 text-base sm:text-lg font-black flex items-center justify-center gap-2">
+              <span>📋</span>
+              <span id="btnCopyReportLabel">一鍵複製成績單文字</span>
+            </button>
+            <button onclick="resetToQuizSetup()" class="sketch-btn bg-white py-4 px-5 text-base font-black shrink-0">
+              🔄 再挑戰一次
+            </button>
+          </div>
+        </div>
+
+        <!-- 錯題復習清單 -->
+        <div class="sketch-card bg-white p-5 sm:p-6">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+            <h3 class="text-xl font-black flex items-center gap-2"><span>📖</span> 錯題復習清單</h3>
+            <span id="wrongSummaryBadge" class="px-3 py-1 rounded-full bg-[#FFD6E0] border-2 border-[#4a3525] text-xs font-black">共 0 題錯題</span>
+          </div>
+          <div id="wrongListContainer" class="space-y-3.5"></div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- 頁尾 -->
+  <footer class="max-w-5xl mx-auto px-4 mt-10 text-center text-xs sm:text-sm font-bold text-[#7a5f4b]">
+    115學年度上學期 南一版國小國語五上 第參單元〈用心看世界〉自主學習與 25 題線上測驗 ✨
+  </footer>
+
+  <!-- ==================== JavaScript 邏輯與 25 題完整題庫 ==================== -->
+  <script>
+    // =========================================================================
+    // 1. 原創手繪感 SVG 插圖資料庫（第7課 4 建築 + 第8課 4 美食）
+    // =========================================================================
+    const SVG_ART = {
+      mila: `
+        <svg viewBox="0 0 260 155" class="w-full h-40 rounded-2xl border-2 border-[#4a3525] bg-[#E3F4FF]" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="38" cy="30" r="12" fill="#FFFFFF"/><circle cx="52" cy="28" r="15" fill="#FFFFFF"/><circle cx="66" cy="32" r="11" fill="#FFFFFF"/>
+          <circle cx="210" cy="28" r="13" fill="#FFFFFF"/><circle cx="225" cy="32" r="10" fill="#FFFFFF"/>
+          <!-- 屋頂外星人煙囪 -->
+          <g stroke="#4a3525" stroke-width="2.2" stroke-linejoin="round">
+            <path d="M84 52 L88 26 C89 20, 99 20, 100 26 L104 52 Z" fill="#E9D8A6"/>
+            <circle cx="91" cy="32" r="2" fill="#4a3525"/><circle cx="97" cy="32" r="2" fill="#4a3525"/>
+            <path d="M122 50 L125 22 C126 15, 136 15, 137 22 L140 50 Z" fill="#F4E4BA"/>
+            <circle cx="128" cy="29" r="2" fill="#4a3525"/><circle cx="134" cy="29" r="2" fill="#4a3525"/>
+            <path d="M162 52 L166 28 C167 22, 175 22, 176 28 L180 52 Z" fill="#E9D8A6"/>
+            <circle cx="169" cy="34" r="2" fill="#4a3525"/><circle cx="174" cy="34" r="2" fill="#4a3525"/>
+          </g>
+          <!-- 波浪牆面 -->
+          <path d="M42 145 L42 62 Q70 46, 100 58 T160 54 T218 62 L218 145 Z" fill="#FAF0DC" stroke="#4a3525" stroke-width="2.6"/>
+          <path d="M42 86 Q72 74, 102 84 T162 80 T218 88" fill="none" stroke="#4a3525" stroke-width="2.2"/>
+          <path d="M42 115 Q72 103, 102 114 T162 110 T218 118" fill="none" stroke="#4a3525" stroke-width="2.2"/>
+          <!-- 窗臺與海帶鐵欄杆 -->
+          <rect x="66" y="64" width="24" height="17" rx="6" fill="#74C0FC" stroke="#4a3525" stroke-width="2"/>
+          <path d="M64 76 Q70 84, 74 75 T84 82 T92 75" fill="none" stroke="#2D6A4F" stroke-width="2.4" stroke-linecap="round"/>
+          <rect x="118" y="61" width="26" height="18" rx="6" fill="#74C0FC" stroke="#4a3525" stroke-width="2"/>
+          <path d="M116 74 Q122 83, 128 73 T138 82 T146 74" fill="none" stroke="#2D6A4F" stroke-width="2.4" stroke-linecap="round"/>
+          <rect x="172" y="65" width="24" height="17" rx="6" fill="#74C0FC" stroke="#4a3525" stroke-width="2"/>
+          <path d="M170 77 Q176 85, 182 76 T192 83 T198 76" fill="none" stroke="#2D6A4F" stroke-width="2.4" stroke-linecap="round"/>
+          <rect x="70" y="92" width="22" height="18" rx="6" fill="#A5D8FF" stroke="#4a3525" stroke-width="2"/>
+          <rect x="120" y="90" width="24" height="18" rx="6" fill="#A5D8FF" stroke="#4a3525" stroke-width="2"/>
+          <rect x="172" y="93" width="22" height="18" rx="6" fill="#A5D8FF" stroke="#4a3525" stroke-width="2"/>
+          <path d="M0 144 Q30 135, 60 144 T120 144 T180 144 T260 144 L260 155 L0 155 Z" fill="#74C0FC" stroke="#4a3525" stroke-width="2"/>
+        </svg>
+      `,
+      batllo: `
+        <svg viewBox="0 0 260 155" class="w-full h-40 rounded-2xl border-2 border-[#4a3525] bg-[#FFF4E6]" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="222" cy="30" r="14" fill="#FFD166" stroke="#4a3525" stroke-width="2.2"/>
+          <!-- 五彩巨龍鱗片屋頂 -->
+          <path d="M54 58 Q95 22, 134 38 T206 58 Z" fill="#4EA8DE" stroke="#4a3525" stroke-width="2.6"/>
+          <circle cx="88" cy="46" r="6" fill="#80ED99" stroke="#4a3525" stroke-width="1.6"/>
+          <circle cx="106" cy="40" r="6" fill="#FFD166" stroke="#4a3525" stroke-width="1.6"/>
+          <circle cx="124" cy="42" r="6" fill="#FF9EB5" stroke="#4a3525" stroke-width="1.6"/>
+          <circle cx="144" cy="45" r="6" fill="#72EFDD" stroke="#4a3525" stroke-width="1.6"/>
+          <circle cx="164" cy="48" r="6" fill="#FFAD60" stroke="#4a3525" stroke-width="1.6"/>
+          <path d="M58 58 L64 26 L70 58 Z" fill="#FFFFFF" stroke="#4a3525" stroke-width="2"/>
+          <circle cx="64" cy="22" r="4" fill="#FFD166" stroke="#4a3525" stroke-width="1.8"/>
+          <!-- 牆面與骨頭陽臺 -->
+          <rect x="56" y="56" width="148" height="90" fill="#FFFDF6" stroke="#4a3525" stroke-width="2.6"/>
+          <circle cx="72" cy="70" r="4" fill="#FF9EB5"/><circle cx="188" cy="74" r="4" fill="#80ED99"/>
+          <circle cx="130" cy="68" r="4" fill="#74C0FC"/><circle cx="105" cy="95" r="3.5" fill="#FFD166"/>
+          <circle cx="158" cy="94" r="3.5" fill="#C77DFF"/>
+          <g stroke="#4a3525" stroke-width="2.2">
+            <rect x="74" y="76" width="32" height="18" rx="9" fill="#F8F9FA"/>
+            <circle cx="84" cy="85" r="3.5" fill="#4a3525"/><circle cx="96" cy="85" r="3.5" fill="#4a3525"/>
+            <rect x="154" y="76" width="32" height="18" rx="9" fill="#F8F9FA"/>
+            <circle cx="164" cy="85" r="3.5" fill="#4a3525"/><circle cx="176" cy="85" r="3.5" fill="#4a3525"/>
+            <path d="M70 145 L70 112 Q130 100, 190 112 L190 145 Z" fill="#FFE8A3"/>
+            <path d="M102 108 C98 122, 98 132, 102 145" stroke-width="5" stroke="#FFFFFF"/>
+            <path d="M102 108 C98 122, 98 132, 102 145" stroke-width="2" stroke="#4a3525"/>
+            <path d="M130 106 C127 120, 133 132, 130 145" stroke-width="5" stroke="#FFFFFF"/>
+            <path d="M130 106 C127 120, 133 132, 130 145" stroke-width="2" stroke="#4a3525"/>
+            <path d="M158 108 C162 122, 162 132, 158 145" stroke-width="5" stroke="#FFFFFF"/>
+            <path d="M158 108 C162 122, 162 132, 158 145" stroke-width="2" stroke="#4a3525"/>
+          </g>
+        </svg>
+      `,
+      guell: `
+        <svg viewBox="0 0 260 155" class="w-full h-40 rounded-2xl border-2 border-[#4a3525] bg-[#E8F8EE]" xmlns="http://www.w3.org/2000/svg">
+          <!-- 薑餅屋 -->
+          <rect x="28" y="72" width="76" height="62" rx="8" fill="#C68B59" stroke="#4a3525" stroke-width="2.5"/>
+          <path d="M20 76 L66 36 L112 76 Z" fill="#A06138" stroke="#4a3525" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M20 76 Q32 86, 44 74 T68 78 T92 74 T112 76 L66 36 Z" fill="#FFFFFF" stroke="#4a3525" stroke-width="2.2" stroke-linejoin="round"/>
+          <circle cx="66" cy="30" r="6" fill="#FF758F" stroke="#4a3525" stroke-width="2"/>
+          <path d="M54 134 L54 104 A12 12 0 0 1 78 104 L78 134 Z" fill="#FFF3B0" stroke="#4a3525" stroke-width="2.2"/>
+          <circle cx="43" cy="92" r="7" fill="#D0EBFF" stroke="#4a3525" stroke-width="2"/>
+          <circle cx="89" cy="92" r="7" fill="#D0EBFF" stroke="#4a3525" stroke-width="2"/>
+          <!-- 彩色大蜥蜴 -->
+          <g transform="translate(122, 68)">
+            <path d="M98 48 C115 44, 118 26, 102 22 C88 18, 76 34, 62 34 C44 34, 30 22, 16 28 C4 34, 4 50, 18 54 C36 58, 56 54, 74 54 C84 54, 92 50, 98 48 Z" fill="#4EA8DE" stroke="#4a3525" stroke-width="2.5"/>
+            <circle cx="34" cy="40" r="5" fill="#FFD166" stroke="#4a3525" stroke-width="1.5"/>
+            <circle cx="50" cy="43" r="5" fill="#FF758F" stroke="#4a3525" stroke-width="1.5"/>
+            <circle cx="66" cy="42" r="5" fill="#80ED99" stroke="#4a3525" stroke-width="1.5"/>
+            <circle cx="82" cy="40" r="4.5" fill="#FFAD60" stroke="#4a3525" stroke-width="1.5"/>
+            <circle cx="20" cy="36" r="3" fill="#FFFFFF" stroke="#4a3525" stroke-width="1.6"/>
+            <circle cx="20" cy="36" r="1.4" fill="#4a3525"/>
+            <path d="M8 44 Q14 48, 20 44" stroke="#4a3525" stroke-width="2" stroke-linecap="round"/>
+            <path d="M28 53 L22 65 M32 54 L30 65" stroke="#4a3525" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M72 53 L68 65 M76 53 L78 65" stroke="#4a3525" stroke-width="2.4" stroke-linecap="round"/>
+          </g>
+          <rect x="0" y="134" width="260" height="21" fill="#A7E8BD" stroke="#4a3525" stroke-width="2.2"/>
+        </svg>
+      `,
+      sagrada: `
+        <svg viewBox="0 0 260 155" class="w-full h-40 rounded-2xl border-2 border-[#4a3525] bg-[#FFF8E7]" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="0,0 90,0 120,155 0,155" fill="#FFAD60" opacity="0.28"/>
+          <polygon points="85,0 175,0 165,155 100,155" fill="#80ED99" opacity="0.24"/>
+          <polygon points="170,0 260,0 260,155 150,155" fill="#74C0FC" opacity="0.28"/>
+          <g stroke="#4a3525" stroke-width="2.3" stroke-linejoin="round">
+            <path d="M62 142 L72 28 L82 142 Z" fill="#F3D5B5"/>
+            <path d="M94 142 L106 16 L118 142 Z" fill="#F8E2C8"/>
+            <path d="M142 142 L154 16 L166 142 Z" fill="#F8E2C8"/>
+            <path d="M178 142 L188 28 L198 142 Z" fill="#F3D5B5"/>
+            <circle cx="72" cy="24" r="5" fill="#FF758F"/>
+            <circle cx="106" cy="13" r="6" fill="#FFD166"/>
+            <circle cx="154" cy="13" r="6" fill="#80ED99"/>
+            <circle cx="188" cy="24" r="5" fill="#74C0FC"/>
+          </g>
+          <path d="M84 144 L84 82 L130 48 L176 82 L176 144 Z" fill="#FFFDF6" stroke="#4a3525" stroke-width="2.6" stroke-linejoin="round"/>
+          <circle cx="130" cy="86" r="14" fill="#FFD166" stroke="#4a3525" stroke-width="2.2"/>
+          <path d="M130 72 L130 100 M116 86 L144 86" stroke="#4a3525" stroke-width="1.8"/>
+          <circle cx="130" cy="86" r="6" fill="#FF758F" stroke="#4a3525" stroke-width="1.6"/>
+          <path d="M112 144 L112 118 A18 18 0 0 1 148 118 L148 144 Z" fill="#74C0FC" stroke="#4a3525" stroke-width="2.2"/>
+          <line x1="130" y1="100" x2="130" y2="144" stroke="#4a3525" stroke-width="2"/>
+          <line x1="18" y1="144" x2="242" y2="144" stroke="#4a3525" stroke-width="2.6" stroke-linecap="round"/>
+        </svg>
+      `,
+      sushi: `
+        <svg viewBox="0 0 260 155" class="w-full h-40 rounded-2xl border-2 border-[#4a3525] bg-[#E8F4FD]" xmlns="http://www.w3.org/2000/svg">
+          <rect x="26" y="108" width="208" height="20" rx="6" fill="#DDA15E" stroke="#4a3525" stroke-width="2.5"/>
+          <rect x="44" y="128" width="16" height="10" rx="2" fill="#BC6C25" stroke="#4a3525" stroke-width="2.2"/>
+          <rect x="200" y="128" width="16" height="10" rx="2" fill="#BC6C25" stroke="#4a3525" stroke-width="2.2"/>
+          <rect x="44" y="84" width="66" height="24" rx="10" fill="#FFFFFF" stroke="#4a3525" stroke-width="2.4"/>
+          <path d="M38 88 C44 68, 108 68, 114 88 C102 95, 50 95, 38 88 Z" fill="#FF8C61" stroke="#4a3525" stroke-width="2.4"/>
+          <path d="M56 76 L62 88 M74 74 L80 88 M92 76 L98 88" stroke="#FFF4E6" stroke-width="2.2" stroke-linecap="round"/>
+          <rect x="130" y="68" width="58" height="40" rx="8" fill="#2B2D42" stroke="#4a3525" stroke-width="2.5"/>
+          <g fill="#FF595E" stroke="#4a3525" stroke-width="1.6">
+            <circle cx="142" cy="64" r="7"/><circle cx="156" cy="61" r="7"/><circle cx="170" cy="63" r="7"/>
+            <circle cx="149" cy="54" r="7"/><circle cx="163" cy="53" r="7"/><circle cx="177" cy="66" r="6"/>
+          </g>
+          <circle cx="140" cy="62" r="2" fill="#FFFFFF"/><circle cx="154" cy="59" r="2" fill="#FFFFFF"/>
+          <circle cx="168" cy="61" r="2" fill="#FFFFFF"/><circle cx="147" cy="52" r="2" fill="#FFFFFF"/>
+          <path d="M196 108 Q208 82, 222 108 Z" fill="#80ED99" stroke="#4a3525" stroke-width="2.3"/>
+          <text x="201" y="76" font-size="12" font-weight="900" fill="#2A9D8F">嗆!</text>
+          <path d="M124 34 L126 39 L131 41 L126 43 L124 48 L122 43 L117 41 L122 39 Z" fill="#FFD166" stroke="#4a3525" stroke-width="1.4"/>
+        </svg>
+      `,
+      curry: `
+        <svg viewBox="0 0 260 155" class="w-full h-40 rounded-2xl border-2 border-[#4a3525] bg-[#FFF4D9]" xmlns="http://www.w3.org/2000/svg">
+          <path d="M74 44 Q68 34, 76 24" fill="none" stroke="#E76F51" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M98 40 Q92 30, 100 20" fill="none" stroke="#E76F51" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M122 44 Q116 34, 124 24" fill="none" stroke="#E76F51" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M40 76 H154 V102 C154 126, 130 136, 97 136 C64 136, 40 126, 40 102 Z" fill="#D4A373" stroke="#4a3525" stroke-width="2.6"/>
+          <ellipse cx="97" cy="76" rx="57" ry="18" fill="#E07A22" stroke="#4a3525" stroke-width="2.5"/>
+          <path d="M68 76 Q82 66, 98 76 T126 75" fill="none" stroke="#FFFDF6" stroke-width="3.2" stroke-linecap="round"/>
+          <circle cx="76" cy="74" r="6" fill="#52B788" stroke="#4a3525" stroke-width="1.8"/>
+          <rect x="102" y="68" width="14" height="10" rx="4" fill="#9C4A1A" stroke="#4a3525" stroke-width="1.8"/>
+          <circle cx="122" cy="79" r="5" fill="#52B788" stroke="#4a3525" stroke-width="1.8"/>
+          <path d="M168 122 C164 82, 198 50, 224 66 C240 76, 234 118, 212 128 C194 136, 170 134, 168 122 Z" fill="#F4D399" stroke="#4a3525" stroke-width="2.6"/>
+          <ellipse cx="195" cy="84" rx="7" ry="4" fill="#C68B59" opacity="0.7"/>
+          <ellipse cx="212" cy="104" rx="8" ry="4.5" fill="#C68B59" opacity="0.7"/>
+          <ellipse cx="188" cy="112" rx="6" ry="3.5" fill="#C68B59" opacity="0.7"/>
+        </svg>
+      `,
+      pizza: `
+        <svg viewBox="0 0 260 155" class="w-full h-40 rounded-2xl border-2 border-[#4a3525] bg-[#FFE8E5]" xmlns="http://www.w3.org/2000/svg">
+          <!-- 窯烤火花與迷你火山 -->
+          <path d="M180 86 L204 42 L222 42 L246 86 Z" fill="#8D6E63" stroke="#4a3525" stroke-width="2.2"/>
+          <path d="M204 42 Q213 24, 226 30 Q218 16, 206 24" fill="#FF758F" stroke="#4a3525" stroke-width="1.8"/>
+          <circle cx="212" cy="15" r="4" fill="#FFD166"/>
+          <circle cx="194" cy="28" r="2.8" fill="#FF9F1C"/>
+          <circle cx="232" cy="24" r="2.5" fill="#FFD166"/>
+          <!-- 瑪格麗特披薩 -->
+          <circle cx="114" cy="86" r="56" fill="#E9B872" stroke="#4a3525" stroke-width="2.8"/>
+          <circle cx="114" cy="86" r="46" fill="#E63946" stroke="#4a3525" stroke-width="2"/>
+          <line x1="114" y1="40" x2="114" y2="132" stroke="#4a3525" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <line x1="68" y1="86" x2="160" y2="86" stroke="#4a3525" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <circle cx="94" cy="68" r="10" fill="#FFFDF6" stroke="#4a3525" stroke-width="1.8"/>
+          <circle cx="136" cy="70" r="10" fill="#FFFDF6" stroke="#4a3525" stroke-width="1.8"/>
+          <circle cx="96" cy="108" r="10" fill="#FFFDF6" stroke="#4a3525" stroke-width="1.8"/>
+          <circle cx="134" cy="106" r="10" fill="#FFFDF6" stroke="#4a3525" stroke-width="1.8"/>
+          <ellipse cx="114" cy="64" rx="8" ry="5" transform="rotate(-20 114 64)" fill="#52B788" stroke="#4a3525" stroke-width="1.8"/>
+          <ellipse cx="86" cy="90" rx="8" ry="5" transform="rotate(25 86 90)" fill="#52B788" stroke="#4a3525" stroke-width="1.8"/>
+          <ellipse cx="140" cy="90" rx="8" ry="5" transform="rotate(-30 140 90)" fill="#52B788" stroke="#4a3525" stroke-width="1.8"/>
+          <ellipse cx="114" cy="112" rx="8" ry="5" fill="#52B788" stroke="#4a3525" stroke-width="1.8"/>
+          <!-- 義大利國旗 -->
+          <rect x="196" y="114" width="12" height="20" fill="#52B788" stroke="#4a3525" stroke-width="1.8"/>
+          <rect x="208" y="114" width="12" height="20" fill="#FFFFFF" stroke="#4a3525" stroke-width="1.8"/>
+          <rect x="220" y="114" width="12" height="20" fill="#E63946" stroke="#4a3525" stroke-width="1.8"/>
+        </svg>
+      `,
+      kimchi: `
+        <svg viewBox="0 0 260 155" class="w-full h-40 rounded-2xl border-2 border-[#4a3525] bg-[#FFF0F3]" xmlns="http://www.w3.org/2000/svg">
+          <path d="M62 66 C48 84, 52 128, 76 140 H156 C180 128, 184 84, 170 66 Z" fill="#8D5524" stroke="#4a3525" stroke-width="2.6"/>
+          <ellipse cx="116" cy="66" rx="54" ry="12" fill="#6F3E16" stroke="#4a3525" stroke-width="2.5"/>
+          <path d="M84 68 C78 40, 96 26, 116 32 C136 26, 154 40, 148 68 Z" fill="#D8F3DC" stroke="#4a3525" stroke-width="2.4"/>
+          <path d="M94 68 C94 48, 108 38, 116 44 C124 38, 138 48, 138 68 Z" fill="#FF8FA3" stroke="#4a3525" stroke-width="2"/>
+          <circle cx="107" cy="54" r="2.3" fill="#4a3525"/><circle cx="125" cy="54" r="2.3" fill="#4a3525"/>
+          <circle cx="101" cy="58" r="4" fill="#E63946" opacity="0.65"/><circle cx="131" cy="58" r="4" fill="#E63946" opacity="0.65"/>
+          <path d="M112 58 Q116 62, 120 58" stroke="#4a3525" stroke-width="2" stroke-linecap="round"/>
+          <path d="M192 92 C206 94, 224 114, 218 134 C206 130, 192 114, 192 92 Z" fill="#E63946" stroke="#4a3525" stroke-width="2.4"/>
+          <path d="M192 92 Q188 84, 196 80" fill="none" stroke="#52B788" stroke-width="2.6" stroke-linecap="round"/>
+          <path d="M36 108 C22 114, 22 134, 38 136 C54 134, 54 114, 40 108 L38 98 Z" fill="#FFFDF6" stroke="#4a3525" stroke-width="2.3"/>
+          <ellipse cx="188" cy="36" rx="34" ry="8" transform="rotate(14 188 36)" fill="#A46434" stroke="#4a3525" stroke-width="2.4"/>
+          <circle cx="190" cy="28" r="4" fill="#6F3E16" stroke="#4a3525" stroke-width="2"/>
+        </svg>
+      `
+    };
+
+    // =========================================================================
+    // 2. 第7、8課互動教室教材資料
+    // =========================================================================
+    const L7_BUILDINGS = [
+      {
+        id: 'b-mila',
+        name: '米拉之家',
+        subtitle: '波浪狀牆面的奇幻大宅',
+        bg: 'bg-[#D0EBFF]/40',
+        svg: SVG_ART.mila,
+        feature: '外牆呈海浪般的波浪曲線，打破傳統方正直線設計。',
+        metaphors: [
+          '整棟建築 ➡ 從海底冒出的「大海怪」',
+          '窗臺鐵欄杆 ➡ 掛在牠身上的「海帶」',
+          '屋頂造型怪異的煙囪 ➡ 坐在牠頭上盯著人看的「外星人」'
+        ],
+        quote: '「有著波浪狀牆面的『米拉之家』，就像從海底冒出的大海怪。」'
+      },
+      {
+        id: 'b-batllo',
+        name: '巴特羅之家',
+        subtitle: '以聖喬治屠龍傳說為藍圖',
+        bg: 'bg-[#FFE5CC]/45',
+        svg: SVG_ART.batllo,
+        feature: '外形標新立異、色彩繽紛，又被當地人稱作「骨頭之家」。',
+        metaphors: [
+          '柱子、陽臺和欄杆 ➡ 讓人聯想到「恐龍骨頭」',
+          '五彩磁磚拼貼的屋頂 ➡ 如同「巨龍身上的鱗片」，在陽光下閃閃發亮'
+        ],
+        quote: '「特別是那用五彩磁磚拼貼的屋頂，如同巨龍身上的鱗片，在陽光照耀下閃閃發亮。」'
+      },
+      {
+        id: 'b-guell',
+        name: '奎爾公園',
+        subtitle: '充滿童話感的夢幻公園',
+        bg: 'bg-[#D8F3DC]/45',
+        svg: SVG_ART.guell,
+        feature: '結合綠地、廣場與彩色馬賽克拼貼，充滿童話氣息。',
+        metaphors: [
+          '門口兩棟薑餅屋褐色牆面 ➡ 像「香脆的餅乾」',
+          '屋頂白色裝飾 ➡ 像布滿甜甜的「白糖霜」，讓人好想吃一口'
+        ],
+        quote: '「進入公園，兩道白色樓梯間，一隻彩色的大蜥蜴，朝著遊客張牙舞爪。」'
+      },
+      {
+        id: 'b-sagrada',
+        name: '聖家堂',
+        subtitle: '蓋了140多年、未完工即成世界遺產',
+        bg: 'bg-[#FFF3B0]/55',
+        svg: SVG_ART.sagrada,
+        feature: '高入天際的立門與高塔充滿精細雕刻，紅橙到藍綠彩繪玻璃交織奇幻光影。',
+        metaphors: [
+          '聖堂灰白石柱 ➡ 有如「參天巨木」，伸展到滿是葉形浮雕的屋頂',
+          '整個聖堂空間 ➡ 讓人以為來到「森林之中」'
+        ],
+        quote: '「這些與眾不同的設計，讓建了一百四十多年的聖家堂，未完工就被列入世界遺產。」'
+      }
+    ];
+
+    const L8_FOODS = [
+      {
+        id: 'f-sushi',
+        country: '🇯🇵 日本',
+        name: '壽司',
+        bg: 'bg-[#D0EBFF]/40',
+        svg: SVG_ART.sushi,
+        poem: '和調味料<span class="hl-person">相撲</span>過後的米飯／<span class="hl-person">戴上</span>魚蝦螺貝，還有<span class="hl-person">盯著你直看</span>／<span class="hl-redup">滿滿的</span><span class="hl-redup">晶晶亮亮的</span>鮭魚子',
+        decode: [
+          '🤼 <strong>擬人與線索：</strong>用「相撲」形容米飯攪拌，暗藏日本國技；圓滾滾的鮭魚子像小眼睛盯著你看。',
+          '😭 <strong>感動的鹹水：</strong>指味道強烈的「山葵」衝進鼻子，嗆得眼眶流下淚水！'
+        ],
+        culture: '日本四面環海，結合各季節新鮮漁獲發展出獨特的壽司美食文化。'
+      },
+      {
+        id: 'f-curry',
+        country: '🇮🇳 印度',
+        name: '咖哩和麥餅',
+        bg: 'bg-[#FFF3B0]/55',
+        svg: SVG_ART.curry,
+        poem: '先請青菜和肉塊／<span class="hl-person">洗一場</span><span class="hl-redup">熱熱的</span><span class="hl-redup">濃濃稠稠的</span>／香料澡／讓<span class="hl-person">專精瑜伽的</span>麥餅／<span class="hl-redup">慢慢</span>環繞靠近',
+        decode: [
+          '🛁 <strong>擬人巧思：</strong>把青菜與肉塊在咖哩鍋烹煮比擬為「洗香料澡」，柔軟的麥餅則是「專精瑜伽」。',
+          '🖐️ <strong>一把抓起辛香：</strong>呈現用手拿麥餅包著或沾著咖哩醬汁一起入口的畫面！'
+        ],
+        culture: '印度是香料王國，徒手用右手拇指、食指和中指拿烤餅沾咖哩，是重要飲食傳統。'
+      },
+      {
+        id: 'f-pizza',
+        country: '🇮🇹 義大利',
+        name: '披薩',
+        bg: 'bg-[#FFD6E0]/45',
+        svg: SVG_ART.pizza,
+        poem: '<span class="hl-redup">軟軟的</span>麵團們正<span class="hl-person">呼著氣睡得香甜</span>……身體都變成<span class="hl-redup">大大的</span><span class="hl-redup">圓圓扁扁的</span>／帶著維蘇威火山爆發的<span class="hl-person">起床氣</span>',
+        decode: [
+          '😴 <strong>睡得香甜：</strong>指麵團正在靜置「發酵（醒麵）」喔！',
+          '🇮🇹 <strong>紅、白、綠三色：</strong>暗指瑪格麗特披薩的紅番茄醬、白起司、綠羅勒，正好是義大利國旗色！'
+        ],
+        culture: '在窯裡「劈里啪啦」高溫烘烤出爐的披薩，入口化作多采多姿的讚美！'
+      },
+      {
+        id: 'f-kimchi',
+        country: '🇰🇷 韓國',
+        name: '辛奇（Kimchi）',
+        bg: 'bg-[#D8F3DC]/45',
+        svg: SVG_ART.kimchi,
+        poem: '先和鹽巴來個<span class="hl-person">暖身操</span>／<span class="hl-redup">拉拉</span>筋、<span class="hl-redup">出出</span>汗……白菜的臉變得<span class="hl-redup">紅紅的</span><span class="hl-redup">溼溼黏黏的</span>／<span class="hl-person">躲貓貓遊戲</span>還沒結束呢！',
+        decode: [
+          '🤸 <strong>暖身操與出汗：</strong>把抹鹽讓大白菜出水軟化的過程寫成做體操，超級有趣！',
+          '🙈 <strong>躲貓貓還沒結束：</strong>蓋上大缸蓋子後，大白菜還需要時間「醃製入味」才大功告成！'
+        ],
+        culture: '韓國冬天寒冷不易種菜，因此發展出用大白菜、鹽、辣椒、大蒜與菜頭醃製的辛奇文化。'
+      }
+    ];
+
+    const METAPHOR_QUESTIONS = [
+      {
+        text: '1. 連綿不絕的山巒好似一個個巨人勾肩搭背。',
+        isMetaphor: true,
+        reason: '把「山巒」比喻成「巨人」，找出高大連綿的相似點，是譬喻修辭！'
+      },
+      {
+        text: '2. 親戚們直呼這個剛出生的孩子好像他的爸爸。',
+        isMetaphor: false,
+        reason: '抓到陷阱啦！這裡的「好像」只是表示「長相相似」，沒有拿兩種不同事物打比方，所以「不是」譬喻喔！'
+      },
+      {
+        text: '3. 驚天巨雷宛如猛獸怒吼，妹妹嚇得躲在棉被裡不斷發抖。',
+        isMetaphor: true,
+        reason: '把「驚天巨雷」的聲音比喻成「猛獸怒吼」，用「宛如」連接，讓聲音更有震撼力！'
+      }
+    ];
+
+    const IDIOM_DICT = {
+      '金碧輝煌': { meaning: '形容建築物十分華麗、光彩奪目。', example: '這座古老的宮殿經過翻修後，看起來金碧輝煌。' },
+      '雕梁畫棟': { meaning: '屋梁上精細雕刻，棟柱上彩繪裝飾，形容建築物富麗堂皇。', example: '這棟歷史古宅裡處處可見雕梁畫棟的精湛工藝。' },
+      '富麗堂皇': { meaning: '絢爛美麗、氣勢宏偉。', example: '這座仿古宮殿梁柱雕刻精細、牆面彩繪栩栩如生，真是富麗堂皇。' },
+      '獨樹一格': { meaning: '比喻自成一家，擁有獨特的品味和風格。', example: '高第的建築充滿奇思妙想，呈現出獨樹一格的巧思。' },
+      '滿目瘡痍': { meaning: '形容所見到的都是殘破不堪的景象。', example: '戰爭過後的城市殘破不堪，放眼望去滿目瘡痍。' },
+      '破舊不堪': { meaning: '形容十分破爛陳舊。', example: '這棟無人居住的木屋已經破舊不堪，準備拆除重建。' },
+      '搖搖欲墜': { meaning: '搖搖晃晃得快要倒下來，形容十分危險。', example: '強烈的地震讓大樓搖搖欲墜，隨時有倒塌的危險。' }
+    };
+
+    // =========================================================================
+    // 3. 完整 25 題題庫（100% 緊扣南一版五上第7、8課課本與習作）
+    //    第 1～13 題：第 7 課（13題）｜第 14～25 題：第 8 課（12題）
+    // =========================================================================
+    const FULL_QUESTION_BANK = [
+      // --- 第 7 課（13 題） ---
+      {
+        id: 1, lesson: 'l7', tag: '第7課・字音字形',
+        q: '〈高第的魔法建築〉中，「圓弧」的「弧」字，讀音與字形正確的是？',
+        options: ['ㄏㄨˊ，弧線', 'ㄏㄨˊ，狐線', 'ㄍㄨ，孤線', 'ㄍㄨㄚ，瓜線'],
+        answer: 0,
+        explain: '「弧」讀作「ㄏㄨˊ」，部首為「弓」，形容彎曲流動的線條（如弧線、圓弧）；「狐」是犬部（狐狸），「孤」讀作「ㄍㄨ」（孤單）。'
+      },
+      {
+        id: 2, lesson: 'l7', tag: '第7課・形近字',
+        q: '習作練習：「這片湖水非常『＿＿』淨，魚、蝦清晰可見。」應填入哪個字？',
+        options: ['瞪', '澄', '燈', '登'],
+        answer: 1,
+        explain: '「澄」是水部，讀作「ㄔㄥˊ」，「澄淨」形容湖水清澈乾淨。'
+      },
+      {
+        id: 3, lesson: 'l7', tag: '第7課・形近字',
+        q: '習作練習：「魔術師登臺表演，精湛的手法讓人看得目『＿＿』口呆。」應填入哪個字？',
+        options: ['澄', '燈', '瞪', '登'],
+        answer: 2,
+        explain: '「瞪」是目部，讀作「ㄉㄥˋ」，「目瞪口呆」形容因驚訝而睜大眼睛、神情呆滯的樣子。'
+      },
+      {
+        id: 4, lesson: 'l7', tag: '第7課・多音字',
+        q: '「一隻彩色的大蜥蜴，朝著遊客張牙舞『爪』」，句中「爪」的讀音是？',
+        options: ['ㄓㄨㄚˇ', 'ㄍㄨㄚ', 'ㄓㄠˋ', 'ㄓㄠˇ'],
+        answer: 3,
+        explain: '「張牙舞爪」的「爪」讀作「ㄓㄠˇ」（同：爪牙、雞爪）；「爪子」則讀作「ㄓㄨㄚˇ」。'
+      },
+      {
+        id: 5, lesson: 'l7', tag: '第7課・四字語詞',
+        q: '下列哪一個四字語詞最適合形容「高第的建築風格與眾不同，自成一家」？',
+        options: ['獨樹一格', '搖搖欲墜', '滿目瘡痍', '破舊不堪'],
+        answer: 0,
+        explain: '「獨樹一格」比喻自成一家，擁有獨自的品味和風格；其餘三個語詞皆用來形容殘破或危險的建築景象。'
+      },
+      {
+        id: 6, lesson: 'l7', tag: '第7課・四字語詞',
+        q: '習作練習：「戰爭過後的城市殘破不堪，放眼望去『＿＿＿＿』。」應填入哪個語詞？',
+        options: ['富麗堂皇', '雕梁畫棟', '滿目瘡痍', '金碧輝煌'],
+        answer: 2,
+        explain: '「滿目瘡痍」形容眼前所見到的都是殘破不堪的景象，最適合描述戰後的城市。'
+      },
+      {
+        id: 7, lesson: 'l7', tag: '第7課・延伸成語',
+        q: '課本生字延伸成語中，用來形容「書籍非常多」的成語是？',
+        options: ['雪上加霜', '汗牛充棟', '不著邊際', '不遺餘力'],
+        answer: 1,
+        explain: '「汗牛充棟」形容藏書極多（搬運時牛累得出汗，存放時堆滿屋棟）；雪上加霜指禍患加重、不著邊際指不切實際、不遺餘力指竭盡全力。'
+      },
+      {
+        id: 8, lesson: 'l7', tag: '第7課・課文理解',
+        q: '高第的作品之所以充滿神奇的生命力，是因為他從小喜歡觀察什麼，並將其曲線融入建築中？',
+        options: ['幾何積木', '大自然', '機器零件', '古代宮殿'],
+        answer: 1,
+        explain: '高第從小喜歡觀察「大自然」，把樹木、花草、貝殼、海浪和昆蟲翅膀的圓弧曲線融入建築物中，給予作品神奇的生命力。'
+      },
+      {
+        id: 9, lesson: 'l7', tag: '第7課・課文理解',
+        q: '作者參觀「米拉之家」時，將屋頂上一個個造型怪異的煙囪聯想成什麼？',
+        options: ['掛在海怪身上的海帶', '恐龍骨頭', '坐在海怪頭上盯著人看的外星人', '巨龍身上的鱗片'],
+        answer: 2,
+        explain: '米拉之家像大海怪，窗臺鐵欄杆是海帶，而屋頂造型怪異的煙囪則是「坐在牠頭上盯著人看的外星人」。'
+      },
+      {
+        id: 10, lesson: 'l7', tag: '第7課・課文理解',
+        q: '「巴特羅之家」用五彩磁磚拼貼的屋頂，在陽光照耀下閃閃發亮，讓作者聯想到什麼？',
+        options: ['巨龍身上的鱗片', '甜甜的白糖霜', '香脆的餅乾', '參天巨木'],
+        answer: 0,
+        explain: '巴特羅之家以聖喬治屠龍為藍圖，五彩磁磚拼貼的屋頂在陽光下閃閃發亮，如同「巨龍身上的鱗片」。'
+      },
+      {
+        id: 11, lesson: 'l7', tag: '第7課・課文理解',
+        q: '關於高第的代表作「聖家堂」，下列敘述何者正確？',
+        options: ['位於義大利羅馬', '已經完工超過一百年', '建了一百四十多年，尚未完工就被列入世界遺產', '裡面沒有彩繪玻璃'],
+        answer: 2,
+        explain: '聖家堂位於西班牙巴塞隆納，因擁有與眾不同的設計與彩繪玻璃光影，建了一百四十多年「未完工就被列入世界遺產」。'
+      },
+      {
+        id: 12, lesson: 'l7', tag: '第7課・譬喻修辭',
+        q: '習作練習：下列哪一個句子「沒有」運用譬喻修辭？',
+        options: [
+          '連綿不絕的山巒好似一個個巨人勾肩搭背',
+          '親戚們直呼這個剛出生的孩子好像他的爸爸',
+          '驚天巨雷宛如猛獸怒吼',
+          '池塘裡的荷葉又大又綠，有如一把把青翠的雨傘'
+        ],
+        answer: 1,
+        explain: '選項(B)的「好像」是指父子「長相相似」，並不是把兩種不同事物拿來打比方，因此沒有運用譬喻修辭。'
+      },
+      {
+        id: 13, lesson: 'l7', tag: '第7課・延伸閱讀',
+        q: '習作延伸閱讀〈光之教堂〉與〈蘭陽博物館〉中，下列敘述何者正確？',
+        options: [
+          '光之教堂以清水混凝土構成，陽光流進十字開口造就震撼景象',
+          '兩者都以音樂為設計主題',
+          '蘭陽博物館以海洋為主體來設計',
+          '兩者使用完全相同的建築材料'
+        ],
+        answer: 0,
+        explain: '光之教堂以清水混凝土構成、強調「光」的表現；蘭陽博物館外牆以石材為主，以東北角「單面山」為主體並以韋瓦第《四季》音樂為靈感。'
+      },
+
+      // --- 第 8 課（12 題） ---
+      {
+        id: 14, lesson: 'l8', tag: '第8課・字音字形',
+        q: '第8課習作短文中提到「臺灣人口『ㄔㄡˊ』密」，正確的國字是？',
+        options: ['綢', '惆', '稠', '調'],
+        answer: 2,
+        explain: '「稠」是禾部，讀作「ㄔㄡˊ」，有濃密、密聚的意思（如：人口稠密、濃稠）。'
+      },
+      {
+        id: 15, lesson: 'l8', tag: '第8課・多音字',
+        q: '下列哪一個詞語中「扁」字的讀音，與「圓圓扁扁（ㄅㄧㄢˇ）」不同？',
+        options: ['扁食', '壓扁', '扁平', '扁舟'],
+        answer: 3,
+        explain: '「扁舟」指小船，句中的「扁」讀作「ㄆㄧㄢ」；扁食、壓扁、扁平的「扁」都讀作「ㄅㄧㄢˇ」。'
+      },
+      {
+        id: 16, lesson: 'l8', tag: '第8課・延伸成語',
+        q: '課本生字延伸成語中，形容「事物的形式呆板而毫無變化」的是？',
+        options: ['衣錦還鄉', '千篇一律', '撲朔迷離', '欲蓋彌彰'],
+        answer: 1,
+        explain: '「千篇一律」形容文章或事物的形式呆板而毫無變化；衣錦還鄉指功成名就榮歸故鄉，撲朔迷離指錯綜複雜難辨真相，欲蓋彌彰指想掩飾過失反而更明顯。'
+      },
+      {
+        id: 17, lesson: 'l8', tag: '第8課・課文理解',
+        q: '日本壽司一段中，「讓眼底流出一池感動的鹹水」，其實是指吃壽司時發生了什麼事？',
+        options: ['被味道強烈的山葵嗆得流下眼淚', '壽司裡的醬油太鹹了', '鮭魚子太亮刺痛眼睛', '想起家鄉的大海而哭泣'],
+        answer: 0,
+        explain: '吃壽司時，味道極為強烈的「山葵」會衝進鼻子裡，讓人嗆得眼眶流淚，作者巧妙地把淚水比喻為「感動的鹹水」。'
+      },
+      {
+        id: 18, lesson: 'l8', tag: '第8課・課文理解',
+        q: '「先請青菜和肉塊／洗一場熱熱的濃濃稠稠的／香料澡」，這句詩是在描寫哪一道料理？',
+        options: ['日本壽司', '印度咖哩', '義大利披薩', '韓國辛奇'],
+        answer: 1,
+        explain: '印度是香料王國，製作印度咖哩時會將青菜與肉塊放入濃稠的辛香料醬汁中烹煮，就像洗一場香料澡。'
+      },
+      {
+        id: 19, lesson: 'l8', tag: '第8課・課文理解',
+        q: '「讓專精瑜伽的麥餅／慢慢環繞靠近／一把抓起辛香的味道」，呈現的是什麼樣的飲食畫面？',
+        options: ['麥餅正在做伸展運動', '把麥餅切碎放進湯裡', '用麥餅包著或沾著咖哩醬汁一起入口', '用叉子把麥餅捲起來'],
+        answer: 2,
+        explain: '印度傳統習慣用右手拿柔軟的烤麥餅，包著或沾著充滿辛香料的咖哩醬汁一起入口品嘗。'
+      },
+      {
+        id: 20, lesson: 'l8', tag: '第8課・課文理解',
+        q: '習作選擇題：「軟軟的麵團們正呼著氣睡得香甜」，這句話是指製作披薩麵團的哪個程序？',
+        options: ['攪拌', '發酵', '揉捏', '烘烤'],
+        answer: 1,
+        explain: '麵團靜置時，酵母會產生氣體讓麵團膨脹變軟，也就是「發酵（醒麵）」的過程，就像呼著氣睡得香甜。'
+      },
+      {
+        id: 21, lesson: 'l8', tag: '第8課・課文理解',
+        q: '披薩麵團「氣得他們臉上一陣紅、一陣白、一陣綠」，這三種顏色代表義大利國旗色，也暗指披薩上的哪些食材？',
+        options: ['紅辣椒、白糖霜、綠白菜', '紅蘋果、白奶油、綠茶葉', '紅番茄醬、白起司、綠羅勒', '紅鮭魚子、白米飯、綠山葵'],
+        answer: 2,
+        explain: '經典的瑪格麗特披薩上有「紅色的番茄醬、白色的莫札瑞拉起司、綠色的羅勒葉」，正好是義大利國旗的三種顏色！'
+      },
+      {
+        id: 22, lesson: 'l8', tag: '第8課・課文理解',
+        q: '習作選擇題：為什麼詩的最後說大白菜的「躲貓貓遊戲還沒結束呢」？',
+        options: ['還未完成調味', '未到保存期限', '還沒生長成熟', '尚未醃製入味'],
+        answer: 3,
+        explain: '大白菜抹完調味料放進大缸、蓋上蓋子後，還需要靜置發酵一段時間才會「醃製入味」，所以躲貓貓還沒結束！'
+      },
+      {
+        id: 23, lesson: 'l8', tag: '第8課・疊字修辭',
+        q: '課本加油小站：將「熱的濃稠的」改為「熱熱的濃濃稠稠的」，運用「疊字」能帶來什麼效果？',
+        options: ['讓詩句讀起來更具節奏感，增添趣味', '讓文章變得非常嚴肅正式', '用來表示事情發生的時間順序', '讓讀者看不懂原本的意思'],
+        answer: 0,
+        explain: '「疊字」能讓童詩讀起來朗朗上口、更具節奏感，同時多了幾分生動的童趣。'
+      },
+      {
+        id: 24, lesson: 'l8', tag: '第8課・擬人修辭',
+        q: '習作選擇題：作者把食材想像成在洗香料澡，運用了「擬人」手法。下列哪一句也有同樣的效果？',
+        options: [
+          '草地上有兩頭公鹿，正低著頭用犄角相互頂撞',
+          '西風陣陣，叢叢蘆葦搖來搖去，一會兒東倒，一會兒西歪',
+          '微風在湖面認真作畫，畫得湖水滿臉皺紋',
+          '臺灣藍鵲身子碧藍，嘴和爪鮮紅，尾羽末端一抹白'
+        ],
+        answer: 2,
+        explain: '選項(C)把「微風」當成人一樣「認真作畫」，把「湖水」寫成「滿臉皺紋」，正是充滿童趣的擬人修辭！'
+      },
+      {
+        id: 25, lesson: 'l8', tag: '第8課・美味大挑戰',
+        q: '習作猜謎詩：「穿著黃色的防晒衣／戴著一頂細長棕色的帽子／懶洋洋的在水果店裡晒太陽／是誰把我的防晒衣脫了」，請問這首詩寫的是哪種水果？',
+        options: ['番茄', '香蕉', '鳳梨', '木瓜'],
+        answer: 1,
+        explain: '「黃色防晒衣」是香蕉皮，「細長棕色的帽子」是香蕉蒂頭，剝香蕉皮就是把防晒衣脫了，謎底是臺灣著名的「香蕉」！'
+      }
+    ];
+
+    // =========================================================================
+    // 4. 狀態管理與 LocalStorage
+    // =========================================================================
+    const STORAGE_KEY = 'g5_u3_l7l8_quiz25_state_v1';
+    let appState = {
+      exploredIds: [],
+      bestScore: null,
+      student: { className: '', seatNum: '', name: '' }
+    };
+
+    // 測驗狀態
+    let quizScope = 'all'; // 'all' (25) | 'l7' (13) | 'l8' (12)
+    let activeQuestions = [];
+    let userAnswers = [];
+    let currentQIndex = 0;
+    let isCurrentAnswered = false;
+    let quizStartTime = null;
+    let timerInterval = null;
+    let lastResult = null;
+
+    // 形近字互動狀態
+    let selectedDengChar = null;
+    const dengAnswers = ['澄', '瞪', '燈'];
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          appState = {
+            exploredIds: Array.isArray(parsed.exploredIds) ? parsed.exploredIds : [],
+            bestScore: typeof parsed.bestScore === 'number' ? parsed.bestScore : null,
+            student: parsed.student || { className: '', seatNum: '', name: '' }
+          };
+        }
+      } catch (e) {
+        console.warn('無法讀取 localStorage', e);
+      }
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+      } catch (e) {
+        console.warn('無法寫入 localStorage', e);
+      }
+    }
+
+    // =========================================================================
+    // 5. 通用 UI 工具：Toast、分頁切換、進度條更新
+    // =========================================================================
+    let toastTimer = null;
+    function showToast(msg, icon = '✨', bgColor = '#FFF3B0') {
+      const toast = document.getElementById('toast');
+      const inner = document.getElementById('toastInner');
+      document.getElementById('toastIcon').textContent = icon;
+      document.getElementById('toastMsg').textContent = msg;
+      inner.style.backgroundColor = bgColor;
+      toast.classList.remove('hidden');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('hidden'), 3000);
+    }
+
+    function switchTab(tabName) {
+      ['home', 'lesson7', 'lesson8', 'quiz'].forEach(t => {
+        document.getElementById(`section-${t}`).classList.toggle('hidden', t !== tabName);
+        document.getElementById(`tab-${t}`).classList.toggle('active', t === tabName);
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function quickStartQuiz(scope) {
+      switchTab('quiz');
+      if (document.getElementById('quiz-stage-setup').classList.contains('hidden')) {
+        resetToQuizSetup();
+      }
+      selectQuizScope(scope);
+    }
+
+    function updateProgressUI() {
+      const count = appState.exploredIds.length;
+      const pct = Math.round((count / 8) * 100);
+      document.getElementById('headerExploreCount').textContent = `${count} / 8`;
+      document.getElementById('headerBestScore').textContent = appState.bestScore !== null ? `${appState.bestScore} 分` : '-- 分';
+      document.getElementById('homeProgressText').textContent = `${pct}% (${count}/8)`;
+      document.getElementById('homeProgressBar').style.width = `${pct}%`;
+      document.getElementById('homeBestScoreBig').textContent = appState.bestScore !== null ? `${appState.bestScore} 分` : '尚未挑戰';
+    }
+
+    function markExplored(cardId) {
+      if (!appState.exploredIds.includes(cardId)) {
+        appState.exploredIds.push(cardId);
+        saveState();
+        updateProgressUI();
+        showToast(`太棒了！成功解鎖圖鑑卡片（${appState.exploredIds.length}/8）`, '🌟', '#D8F3DC');
+      }
+    }
+
+    // =========================================================================
+    // 6. 第 7 課互動教室渲染與小遊戲邏輯
+    // =========================================================================
+    function renderLesson7() {
+      const gallery = document.getElementById('l7-gallery');
+      gallery.innerHTML = L7_BUILDINGS.map(b => {
+        const explored = appState.exploredIds.includes(b.id);
+        return `
+          <div class="sketch-card sketch-card-hover ${b.bg} p-4 sm:p-5 flex flex-col">
+            <div class="mb-3">${b.svg}</div>
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <div>
+                <h4 class="text-xl font-black">${b.name}</h4>
+                <p class="text-xs font-bold text-[#7a5f4b]">${b.subtitle}</p>
+              </div>
+              <span id="badge-${b.id}" class="px-2.5 py-1 rounded-full text-xs font-black border-2 border-[#4a3525] ${explored ? 'bg-[#80ED99]' : 'bg-white'}">
+                ${explored ? '✅ 已探索' : '🔍 點擊展開'}
+              </span>
+            </div>
+            <button onclick="toggleCardDetail('${b.id}')" class="sketch-btn bg-white w-full py-2.5 px-3 text-sm mt-1">
+              🪄 查看外觀特色、聯想與金句
+            </button>
+            <div id="detail-${b.id}" class="hidden mt-3 bg-white border-2 border-[#4a3525] rounded-2xl p-3.5 text-sm space-y-2 fade-in">
+              <div><strong class="text-[#1D6FA3]">🏛️ 外觀特色：</strong>${b.feature}</div>
+              <div>
+                <div class="font-black text-[#E76F51] mb-1">✨ 作者的魔法聯想：</div>
+                <ul class="list-disc pl-5 space-y-1 font-medium">
+                  ${b.metaphors.map(m => `<li>${m}</li>`).join('')}
+                </ul>
+              </div>
+              <div class="bg-[#FFF3B0]/65 rounded-xl p-2.5 text-xs sm:text-sm font-bold">
+                💬 課文金句：${b.quote}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // 譬喻偵探社
+      const mBox = document.getElementById('metaphorQuizContainer');
+      mBox.innerHTML = METAPHOR_QUESTIONS.map((item, idx) => `
+        <div class="bg-white border-2 border-[#4a3525] rounded-2xl p-3.5">
+          <div class="font-bold text-sm sm:text-base mb-2.5">${item.text}</div>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="checkMetaphor(${idx}, true)" class="sketch-btn bg-[#D8F3DC] px-4 py-1.5 text-sm">⭕ 是譬喻</button>
+            <button onclick="checkMetaphor(${idx}, false)" class="sketch-btn bg-[#FFD6E0] px-4 py-1.5 text-sm">❌ 不是譬喻</button>
+          </div>
+          <div id="meta-fb-${idx}" class="hidden mt-2.5 p-2.5 rounded-xl border-2 border-[#4a3525] text-sm font-bold"></div>
+        </div>
+      `).join('');
+    }
+
+    function toggleCardDetail(id) {
+      const el = document.getElementById(`detail-${id}`);
+      const isHidden = el.classList.contains('hidden');
+      el.classList.toggle('hidden');
+      if (isHidden) {
+        markExplored(id);
+        const badge = document.getElementById(`badge-${id}`);
+        if (badge) {
+          badge.textContent = id.startsWith('f-') ? '✅ 已集章' : '✅ 已探索';
+          badge.classList.remove('bg-white');
+          badge.classList.add('bg-[#80ED99]');
+        }
+      }
+    }
+
+    function checkMetaphor(idx, choice) {
+      const q = METAPHOR_QUESTIONS[idx];
+      const fb = document.getElementById(`meta-fb-${idx}`);
+      const isRight = (choice === q.isMetaphor);
+      fb.classList.remove('hidden', 'bg-[#D8F3DC]', 'bg-[#FFD6E0]');
+      fb.classList.add(isRight ? 'bg-[#D8F3DC]' : 'bg-[#FFD6E0]');
+      fb.innerHTML = isRight ? `🎉 偵探破案成功！${q.reason}` : `💡 再仔細想想喔！${q.reason}`;
+    }
+
+    // 「登」字家族形近字
+    function selectDengChar(char) {
+      selectedDengChar = char;
+      document.querySelectorAll('.deng-chip').forEach(btn => {
+        btn.classList.toggle('bg-[#FFF3B0]', btn.dataset.char === char);
+        btn.classList.toggle('bg-white', btn.dataset.char !== char);
+      });
+    }
+
+    function fillDengBlank(idx) {
+      if (!selectedDengChar) {
+        showToast('請先點選上方「澄、瞪、燈」其中一個字卡喔！', '👆');
+        return;
+      }
+      const btn = document.getElementById(`deng-blank-${idx}`);
+      const fb = document.getElementById(`deng-fb-${idx}`);
+      btn.textContent = selectedDengChar;
+      if (selectedDengChar === dengAnswers[idx]) {
+        btn.className = 'min-w-[44px] h-9 px-2 border-2 border-[#4a3525] rounded-lg bg-[#D8F3DC] font-black text-[#2A9D8F]';
+        fb.textContent = '✅ 答對了！';
+        fb.className = 'text-xs font-black text-[#2A9D8F] ml-auto';
+      } else {
+        btn.className = 'min-w-[44px] h-9 px-2 border-2 border-[#4a3525] rounded-lg bg-[#FFD6E0] font-black text-[#E63946]';
+        fb.textContent = '❌ 再試試看別的字！';
+        fb.className = 'text-xs font-black text-[#E63946] ml-auto';
+      }
+    }
+
+    function resetDengQuiz() {
+      selectedDengChar = null;
+      document.querySelectorAll('.deng-chip').forEach(btn => {
+        btn.classList.remove('bg-[#FFF3B0]');
+        btn.classList.add('bg-white');
+      });
+      for (let i = 0; i < 3; i++) {
+        const b = document.getElementById(`deng-blank-${i}`);
+        b.textContent = '？';
+        b.className = 'min-w-[44px] h-9 px-2 border-2 border-dashed border-[#4a3525] rounded-lg bg-[#FFFDF6] font-black text-[#1D6FA3] hover:bg-[#FFF3B0]';
+        document.getElementById(`deng-fb-${i}`).textContent = '';
+      }
+    }
+
+    function showIdiomDetail(word) {
+      const info = IDIOM_DICT[word];
+      if (!info) return;
+      document.getElementById('idiomDetailBox').innerHTML = `
+        <div class="fade-in text-[#4a3525]">
+          <div class="text-base sm:text-lg font-black text-[#9B5DE5] mb-1">📖 ${word}</div>
+          <p class="mb-1"><strong>意思：</strong>${info.meaning}</p>
+          <p class="text-[#7a5f4b] bg-[#FFFDF6] p-2 rounded-xl border border-[#DFD1BE]"><strong>例句：</strong>${info.example}</p>
+        </div>
+      `;
+    }
+
+    function checkIdiomMini(num, isRight) {
+      const fb = document.getElementById(`idiom-mini-fb-${num}`);
+      fb.classList.remove('hidden', 'text-[#2A9D8F]', 'text-[#E63946]');
+      if (isRight) {
+        fb.classList.add('text-[#2A9D8F]');
+        fb.textContent = num === 1
+          ? '✅ 答對了！「搖搖欲墜」形容大樓搖晃得快要倒塌，非常危險。'
+          : '✅ 答對了！「富麗堂皇」形容宮殿絢爛美麗、氣勢宏偉。';
+      } else {
+        fb.classList.add('text-[#E63946]');
+        fb.textContent = '❌ 意思不太一樣喔！再看看句子的情境提示試一次！';
+      }
+    }
+
+    // =========================================================================
+    // 7. 第 8 課互動教室渲染與小遊戲邏輯
+    // =========================================================================
+    function renderLesson8() {
+      const gallery = document.getElementById('l8-gallery');
+      gallery.innerHTML = L8_FOODS.map(f => {
+        const explored = appState.exploredIds.includes(f.id);
+        return `
+          <div class="sketch-card sketch-card-hover ${f.bg} p-4 sm:p-5 flex flex-col">
+            <div class="mb-3">${f.svg}</div>
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <div>
+                <div class="text-xs font-black text-[#7a5f4b]">${f.country}</div>
+                <h4 class="text-xl font-black">${f.name}</h4>
+              </div>
+              <span id="badge-${f.id}" class="px-2.5 py-1 rounded-full text-xs font-black border-2 border-[#4a3525] ${explored ? 'bg-[#80ED99]' : 'bg-white'}">
+                ${explored ? '✅ 已集章' : '🍽️ 點擊品嘗'}
+              </span>
+            </div>
+            <button onclick="toggleCardDetail('${f.id}')" class="sketch-btn bg-white w-full py-2.5 px-3 text-sm mt-1">
+              📖 讀童詩精選句與文化知識
+            </button>
+            <div id="detail-${f.id}" class="hidden mt-3 bg-white border-2 border-[#4a3525] rounded-2xl p-3.5 text-sm space-y-2.5 fade-in">
+              <div class="bg-[#FFFDF6] border-2 border-dashed border-[#DFD1BE] rounded-xl p-3 font-bold leading-relaxed">
+                🎵 <strong>童詩精選句：</strong><br/>${f.poem}
+              </div>
+              <div class="space-y-1.5">
+                ${f.decode.map(d => `<p class="leading-relaxed">${d}</p>`).join('')}
+              </div>
+              <div class="bg-[#D8F3DC]/65 rounded-xl p-2.5 text-xs font-bold">
+                🌍 飲食文化小知識：${f.culture}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      setRedupMode('redup');
+    }
+
+    function setRedupMode(mode) {
+      const btnPlain = document.getElementById('btn-redup-plain');
+      const btnRedup = document.getElementById('btn-redup-redup');
+      const box = document.getElementById('redupCompareBox');
+
+      if (mode === 'plain') {
+        btnPlain.classList.add('bg-[#FFD6E0]'); btnPlain.classList.remove('bg-white');
+        btnRedup.classList.add('bg-white'); btnRedup.classList.remove('bg-[#FFD6E0]');
+        box.innerHTML = `
+          <div class="bg-white border-2 border-[#4a3525] rounded-2xl p-4 fade-in">
+            <div class="text-xs font-black text-[#7a5f4b] mb-1">例句 1（印度咖哩）</div>
+            <p class="text-base font-bold">洗一場 <u>熱的</u> <u>濃稠的</u> 香料澡</p>
+          </div>
+          <div class="bg-white border-2 border-[#4a3525] rounded-2xl p-4 fade-in">
+            <div class="text-xs font-black text-[#7a5f4b] mb-1">例句 2（韓國辛奇）</div>
+            <p class="text-base font-bold">先和鹽巴來個暖身操／<u>拉筋</u>、<u>出汗</u></p>
+          </div>
+        `;
+      } else {
+        btnRedup.classList.add('bg-[#FFD6E0]'); btnRedup.classList.remove('bg-white');
+        btnPlain.classList.add('bg-white'); btnPlain.classList.remove('bg-[#FFD6E0]');
+        box.innerHTML = `
+          <div class="bg-white border-2 border-[#4a3525] rounded-2xl p-4 fade-in">
+            <div class="text-xs font-black text-[#E76F51] mb-1">✨ 例句 1（加入疊字更生動！）</div>
+            <p class="text-base font-bold">洗一場 <span class="hl-redup">熱熱的</span> <span class="hl-person">濃濃稠稠的</span> 香料澡</p>
+          </div>
+          <div class="bg-white border-2 border-[#4a3525] rounded-2xl p-4 fade-in">
+            <div class="text-xs font-black text-[#2A9D8F] mb-1">✨ 例句 2（加入疊字更有節奏！）</div>
+            <p class="text-base font-bold">先和鹽巴來個暖身操／<span class="hl-redup">拉拉</span>筋、<span class="hl-mint">出出</span>汗</p>
+          </div>
+        `;
+      }
+    }
+
+    function guessRiddle(num, choice) {
+      const fb = document.getElementById(`riddle-fb-${num}`);
+      const correct = num === 1 ? '番茄' : '香蕉';
+      const explain = num === 1
+        ? '答對了！是「番茄」🍅！果實像紅柿且傳自西洋，營養豐富，可以做成番茄醬或煮湯。'
+        : '答對了！是「香蕉」🍌！黃色防晒衣是香蕉皮，棕色細長帽子是蒂頭，脫掉防晒衣就是剝皮！';
+
+      fb.classList.remove('hidden', 'bg-[#D8F3DC]', 'bg-[#FFD6E0]');
+      if (choice === correct) {
+        fb.classList.add('bg-[#D8F3DC]');
+        fb.textContent = `🎉 ${explain}`;
+      } else {
+        fb.classList.add('bg-[#FFD6E0]');
+        fb.textContent = `🤔 不是「${choice}」喔！再從詩裡的顏色、外型與吃法線索猜猜看！`;
+      }
+    }
+
+    // =========================================================================
+    // 8. 線上自我測驗系統（25題完整版，即答即評 + Google Classroom 成績單）
+    // =========================================================================
+    function syncSetupInputsFromState() {
+      document.getElementById('setupClass').value = appState.student.className || '';
+      document.getElementById('setupSeat').value = appState.student.seatNum || '';
+      document.getElementById('setupName').value = appState.student.name || '';
+    }
+
+    function saveStudentInfoFromSetup() {
+      appState.student.className = document.getElementById('setupClass').value.trim();
+      appState.student.seatNum = document.getElementById('setupSeat').value.trim();
+      appState.student.name = document.getElementById('setupName').value.trim();
+      saveState();
+    }
+
+    function selectQuizScope(scope) {
+      quizScope = scope;
+      ['all', 'l7', 'l8'].forEach(s => {
+        const btn = document.getElementById(`scope-${s}`);
+        btn.classList.toggle('bg-[#FFD6E0]', s === scope);
+        btn.classList.toggle('bg-white', s !== scope);
+      });
+    }
+
+    function getScopeTitle(scope) {
+      if (scope === 'l7') return '第7課專攻測驗（13題）';
+      if (scope === 'l8') return '第8課專攻測驗（12題）';
+      return '綜合總測驗（完整25題）';
+    }
+
+    function startQuiz() {
+      saveStudentInfoFromSetup();
+      const { className, seatNum, name } = appState.student;
+      if (!className || !seatNum || !name) {
+        const box = document.getElementById('setupStudentBox');
+        box.classList.remove('shake-wrong');
+        void box.offsetWidth;
+        box.classList.add('shake-wrong');
+        showToast('溫柔提醒：請先填寫「班級、座號、姓名」再開始測驗喔！', '✏️', '#FFD6E0');
+        return;
+      }
+
+      // 依模式取得題目
+      if (quizScope === 'l7') {
+        activeQuestions = FULL_QUESTION_BANK.filter(q => q.lesson === 'l7');
+      } else if (quizScope === 'l8') {
+        activeQuestions = FULL_QUESTION_BANK.filter(q => q.lesson === 'l8');
+      } else {
+        activeQuestions = [...FULL_QUESTION_BANK];
+      }
+
+      userAnswers = new Array(activeQuestions.length).fill(null);
+      currentQIndex = 0;
+      isCurrentAnswered = false;
+      quizStartTime = Date.now();
+
+      // 切換至作答畫面
+      document.getElementById('quiz-stage-setup').classList.add('hidden');
+      document.getElementById('quiz-stage-result').classList.add('hidden');
+      document.getElementById('quiz-stage-playing').classList.remove('hidden');
+
+      document.getElementById('playScopeLabel').textContent = getScopeTitle(quizScope);
+      document.getElementById('playStudentLabel').textContent = `${className} ${seatNum}號 ${name}`;
+      document.getElementById('playTotalNum').textContent = activeQuestions.length;
+
+      clearInterval(timerInterval);
+      updateTimerDisplay();
+      timerInterval = setInterval(updateTimerDisplay, 1000);
+
+      renderQuestion();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateTimerDisplay() {
+      const sec = Math.floor((Date.now() - quizStartTime) / 1000);
+      const m = String(Math.floor(sec / 60)).padStart(2, '0');
+      const s = String(sec % 60).padStart(2, '0');
+      document.getElementById('playTimer').textContent = `${m}:${s}`;
+    }
+
+    function renderQuestion() {
+      const q = activeQuestions[currentQIndex];
+      const total = activeQuestions.length;
+      const letters = ['A', 'B', 'C', 'D'];
+      isCurrentAnswered = false;
+
+      document.getElementById('playCurrentNum').textContent = currentQIndex + 1;
+      document.getElementById('playProgressBar').style.width = `${((currentQIndex + 1) / total) * 100}%`;
+      document.getElementById('questionTag').textContent = q.tag;
+      document.getElementById('questionBadge').textContent = `第 ${currentQIndex + 1} 題`;
+      document.getElementById('questionText').textContent = `${currentQIndex + 1}. ${q.q}`;
+
+      // 隱藏解析與下一題按鈕
+      const fbBox = document.getElementById('instantFeedbackBox');
+      fbBox.classList.add('hidden');
+      fbBox.classList.remove('bg-[#D8F3DC]', 'bg-[#FFD6E0]');
+
+      const nextBtn = document.getElementById('btnNextStep');
+      nextBtn.classList.add('hidden');
+
+      const optBox = document.getElementById('optionsContainer');
+      optBox.innerHTML = q.options.map((opt, idx) => `
+        <button onclick="handleSelectOption(${idx})" id="opt-btn-${idx}" class="sketch-btn w-full text-left p-3.5 sm:p-4 bg-white hover:bg-[#FFFDF6] flex items-center gap-3 text-sm sm:text-base">
+          <span id="opt-badge-${idx}" class="w-8 h-8 rounded-full border-2 border-[#4a3525] bg-[#FFFDF6] flex items-center justify-center shrink-0 font-black">${letters[idx]}</span>
+          <span class="leading-snug">${opt}</span>
+        </button>
+      `).join('');
+    }
+
+    // 選答後即時顯示對錯動畫與白話解析
+    function handleSelectOption(optIdx) {
+      if (isCurrentAnswered) return;
+      isCurrentAnswered = true;
+      userAnswers[currentQIndex] = optIdx;
+
+      const q = activeQuestions[currentQIndex];
+      const isCorrect = (optIdx === q.answer);
+      const letters = ['A', 'B', 'C', 'D'];
+
+      // 鎖定所有選項並標示對錯顏色
+      q.options.forEach((_, idx) => {
+        const btn = document.getElementById(`opt-btn-${idx}`);
+        const badge = document.getElementById(`opt-badge-${idx}`);
+        btn.disabled = true;
+
+        if (idx === q.answer) {
+          btn.classList.remove('bg-white', 'hover:bg-[#FFFDF6]');
+          btn.classList.add('bg-[#D8F3DC]');
+          badge.classList.remove('bg-[#FFFDF6]');
+          badge.classList.add('bg-[#80ED99]');
+          if (isCorrect) btn.classList.add('pop-correct');
+        } else if (idx === optIdx && !isCorrect) {
+          btn.classList.remove('bg-white', 'hover:bg-[#FFFDF6]');
+          btn.classList.add('bg-[#FFD6E0]', 'shake-wrong');
+          badge.classList.remove('bg-[#FFFDF6]');
+          badge.classList.add('bg-[#FF8FA3]');
+        } else {
+          btn.classList.add('opacity-55');
+        }
+      });
+
+      // 顯示即時解析框
+      const fbBox = document.getElementById('instantFeedbackBox');
+      const fbTitle = document.getElementById('instantFeedbackTitle');
+      const fbExplain = document.getElementById('instantFeedbackExplain');
+
+      fbBox.classList.remove('hidden');
+      if (isCorrect) {
+        fbBox.classList.add('bg-[#D8F3DC]');
+        fbTitle.textContent = '🎉 答對了！好厲害！';
+        fbTitle.className = 'text-base sm:text-lg font-black mb-1 text-[#2A9D8F]';
+      } else {
+        fbBox.classList.add('bg-[#FFD6E0]');
+        fbTitle.textContent = `💡 差一點點！正確答案是 (${letters[q.answer]}) ${q.options[q.answer]}`;
+        fbTitle.className = 'text-base sm:text-lg font-black mb-1 text-[#E63946]';
+      }
+      fbExplain.innerHTML = `<strong>📖 解析：</strong>${q.explain}`;
+
+      // 顯示「下一題」或「交卷看成績」
+      const nextBtn = document.getElementById('btnNextStep');
+      const isLast = (currentQIndex === activeQuestions.length - 1);
+      nextBtn.classList.remove('hidden', 'bg-[#FFF3B0]', 'bg-[#80ED99]');
+      if (isLast) {
+        nextBtn.classList.add('bg-[#80ED99]');
+        nextBtn.textContent = '🏆 交卷看成績';
+      } else {
+        nextBtn.classList.add('bg-[#FFF3B0]');
+        nextBtn.textContent = '下一題 ➡️';
+      }
+    }
+
+    function goNextOrFinish() {
+      if (currentQIndex < activeQuestions.length - 1) {
+        currentQIndex++;
+        renderQuestion();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        finishQuiz();
+      }
+    }
+
+    function formatDateTime(date) {
+      const y = date.getFullYear();
+      const m = String(date.getMonth() + 1).padStart(2, '0');
+      const d = String(date.getDate()).padStart(2, '0');
+      const hh = String(date.getHours()).padStart(2, '0');
+      const mm = String(date.getMinutes()).padStart(2, '0');
+      const ss = String(date.getSeconds()).padStart(2, '0');
+      return `${y}/${m}/${d} ${hh}:${mm}:${ss}`;
+    }
+
+    function finishQuiz() {
+      clearInterval(timerInterval);
+      const finishDate = new Date();
+      const elapsedSec = Math.max(1, Math.floor((Date.now() - quizStartTime) / 1000));
+      const durMin = String(Math.floor(elapsedSec / 60)).padStart(2, '0');
+      const durSec = String(elapsedSec % 60).padStart(2, '0');
+      const durationStr = `${durMin}分${durSec}秒`;
+      const finishTimeStr = formatDateTime(finishDate);
+
+      let correctCount = 0;
+      const wrongItems = [];
+      const wrongNums = [];
+
+      activeQuestions.forEach((q, idx) => {
+        if (userAnswers[idx] === q.answer) {
+          correctCount++;
+        } else {
+          wrongNums.push(idx + 1);
+          wrongItems.push({ q, seqNum: idx + 1, userAns: userAnswers[idx] });
+        }
+      });
+
+      const total = activeQuestions.length;
+      const score = Math.round((correctCount / total) * 100);
+      const accuracy = Math.round((correctCount / total) * 100);
+
+      // 更新最高分
+      if (appState.bestScore === null || score > appState.bestScore) {
+        appState.bestScore = score;
+        saveState();
+        updateProgressUI();
+      }
+
+      lastResult = {
+        scopeTitle: getScopeTitle(quizScope),
+        score,
+        correctCount,
+        total,
+        accuracy,
+        wrongNums,
+        durationStr,
+        finishTimeStr
+      };
+
+      // 切換至結算畫面
+      document.getElementById('quiz-stage-playing').classList.add('hidden');
+      document.getElementById('quiz-stage-result').classList.remove('hidden');
+
+      let title = '繼續加油！把錯題看懂就會大進步！💪';
+      if (score === 100) title = '滿分 100 分！你是世界探索滿分大師！🏆';
+      else if (score >= 90) title = '太棒了！你是用心看世界的小達人！🌟';
+      else if (score >= 80) title = '表現很優秀！再複習一下錯題就能滿分囉！👏';
+      else if (score >= 60) title = '不錯喔！看看錯題解析會更厲害！✨';
+
+      document.getElementById('resultEncourageTitle').textContent = title;
+      document.getElementById('resultScoreNum').textContent = score;
+      document.getElementById('resultCorrectRatio').textContent = `${correctCount} / ${total} 題`;
+      document.getElementById('resultAccuracy').textContent = `${accuracy}%`;
+      document.getElementById('resultDuration').textContent = durationStr;
+      document.getElementById('resultFinishTime').textContent = finishTimeStr;
+
+      // 填入結算畫面學生資料（雙向同步）
+      document.getElementById('resultClass').value = appState.student.className;
+      document.getElementById('resultSeat').value = appState.student.seatNum;
+      document.getElementById('resultName').value = appState.student.name;
+
+      // 重設複製按鈕樣式
+      const copyBtn = document.getElementById('btnCopyReport');
+      copyBtn.classList.remove('bg-[#80ED99]');
+      copyBtn.classList.add('bg-[#FFD166]');
+      document.getElementById('btnCopyReportLabel').textContent = '一鍵複製成績單文字';
+
+      updateReportPreviewText();
+      renderWrongList(wrongItems);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // 結算畫面修改學生資料 -> 雙向同步到準備畫面、localStorage 與成績單文字
+    function syncResultStudentInfo() {
+      appState.student.className = document.getElementById('resultClass').value.trim();
+      appState.student.seatNum = document.getElementById('resultSeat').value.trim();
+      appState.student.name = document.getElementById('resultName').value.trim();
+      saveState();
+      syncSetupInputsFromState();
+      updateReportPreviewText();
+    }
+
+    function updateReportPreviewText() {
+      if (!lastResult) return;
+      const cls = appState.student.className || '（未填班級）';
+      const seat = appState.student.seatNum || '（未填座號）';
+      const name = appState.student.name || '（未填姓名）';
+
+      const wrongText = lastResult.wrongNums.length === 0
+        ? '無（全部答對！🎉）'
+        : `第 ${lastResult.wrongNums.join('、')} 題`;
+
+      const report = [
+        '【115上 國語五上 第7、8課 線上自我測驗成績單】',
+        `測驗模式：${lastResult.scopeTitle}`,
+        `班級：${cls}｜座號：${seat}｜姓名：${name}`,
+        `測驗成績：${lastResult.score} 分 / 100 分（答對 ${lastResult.correctCount} / ${lastResult.total} 題，正確率 ${lastResult.accuracy}%）`,
+        `錯題題號：${wrongText}`,
+        `作答耗時：${lastResult.durationStr}`,
+        `完成時間：${lastResult.finishTimeStr}`
+      ].join('\n');
+
+      document.getElementById('reportPreview').value = report;
+    }
+
+    // 一鍵複製成績單文字（含 execCommand 可靠 fallback，相容所有瀏覽器與 iframe）
+    function copyReportText() {
+      const textarea = document.getElementById('reportPreview');
+      const text = textarea.value;
+
+      const onSuccess = () => {
+        const btn = document.getElementById('btnCopyReport');
+        btn.classList.remove('bg-[#FFD166]');
+        btn.classList.add('bg-[#80ED99]');
+        document.getElementById('btnCopyReportLabel').textContent = '✅ 已複製！請直接貼到 Google Classroom 繳交作業';
+        showToast('✅ 已複製！請直接貼到 Google Classroom 繳交作業', '🎉', '#D8F3DC');
+      };
+
+      const fallbackCopy = () => {
+        try {
+          textarea.focus();
+          textarea.select();
+          textarea.setSelectionRange(0, 99999);
+          const ok = document.execCommand('copy');
+          if (ok) {
+            onSuccess();
+          } else {
+            showToast('請手動全選上方成績單文字並按 Ctrl+C 複製喔！', '💡', '#FFD6E0');
+          }
+        } catch (err) {
+          showToast('請手動全選上方成績單文字並按 Ctrl+C 複製喔！', '💡', '#FFD6E0');
+        }
+      };
+
+      // 先嘗試 execCommand（在 iframe 中最穩定），若失敗再嘗試 navigator.clipboard
+      try {
+        textarea.focus();
+        textarea.select();
+        textarea.setSelectionRange(0, 99999);
+        if (document.execCommand('copy')) {
+          onSuccess();
+          return;
+        }
+      } catch (e) {
+        // 忽略並改用 clipboard API
+      }
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(onSuccess).catch(fallbackCopy);
+      } else {
+        fallbackCopy();
+      }
+    }
+
+    function renderWrongList(wrongItems) {
+      const badge = document.getElementById('wrongSummaryBadge');
+      const container = document.getElementById('wrongListContainer');
+      const letters = ['A', 'B', 'C', 'D'];
+
+      badge.textContent = `共 ${wrongItems.length} 題錯題`;
+
+      if (wrongItems.length === 0) {
+        badge.classList.remove('bg-[#FFD6E0]');
+        badge.classList.add('bg-[#D8F3DC]');
+        container.innerHTML = `
+          <div class="text-center py-8 bg-[#D8F3DC]/45 border-2 border-dashed border-[#4a3525] rounded-2xl font-black text-lg">
+            🎉 太強了！本次測驗完全沒有錯題，給你一個大大的讚！
+          </div>
+        `;
+        return;
+      }
+
+      badge.classList.remove('bg-[#D8F3DC]');
+      badge.classList.add('bg-[#FFD6E0]');
+
+      container.innerHTML = wrongItems.map(({ q, seqNum, userAns }) => `
+        <div class="border-2 border-[#4a3525] rounded-2xl p-4 bg-[#FFD6E0]/30">
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <span class="text-xs font-black px-2.5 py-0.5 rounded-full bg-white border border-[#4a3525]">${q.tag}</span>
+            <span class="text-xs font-black text-[#E63946]">❌ 第 ${seqNum} 題</span>
+          </div>
+          <div class="font-black text-base mb-2">${seqNum}. ${q.q}</div>
+          <div class="text-sm space-y-1 mb-2.5">
+            <div>
+              <strong>你的答案：</strong>
+              <span class="font-bold text-[#E63946]">
+                ${userAns !== null ? `(${letters[userAns]}) ${q.options[userAns]}` : '（未作答）'}
+              </span>
+            </div>
+            <div>
+              <strong>正確答案：</strong>
+              <span class="font-black text-[#2A9D8F]">(${letters[q.answer]}) ${q.options[q.answer]}</span>
+            </div>
+          </div>
+          <div class="bg-white border border-[#DFD1BE] rounded-xl p-2.5 text-xs sm:text-sm text-[#7a5f4b] leading-relaxed">
+            <strong class="text-[#4a3525]">💡 白話解析：</strong>${q.explain}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function resetToQuizSetup() {
+      clearInterval(timerInterval);
+      document.getElementById('quiz-stage-playing').classList.add('hidden');
+      document.getElementById('quiz-stage-result').classList.add('hidden');
+      document.getElementById('quiz-stage-setup').classList.remove('hidden');
+      syncSetupInputsFromState();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // =========================================================================
+    // 9. 初始化應用程式
+    // =========================================================================
+    window.addEventListener('DOMContentLoaded', () => {
+      loadState();
+      updateProgressUI();
+      syncSetupInputsFromState();
+      renderLesson7();
+      renderLesson8();
+    });
+  </script>
+</body>
+</html>
